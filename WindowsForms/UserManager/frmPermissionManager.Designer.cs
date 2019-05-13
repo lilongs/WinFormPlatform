@@ -88,10 +88,10 @@
             // groupControl3
             // 
             this.groupControl3.Controls.Add(this.btnsure);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl3.Location = new System.Drawing.Point(216, 636);
+            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl3.Location = new System.Drawing.Point(216, 634);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(829, 77);
+            this.groupControl3.Size = new System.Drawing.Size(829, 79);
             this.groupControl3.TabIndex = 4;
             this.groupControl3.Text = "操作";
             // 

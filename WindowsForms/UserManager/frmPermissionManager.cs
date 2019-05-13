@@ -30,7 +30,7 @@ namespace WindowsForms.UserManager
 
         private void LoadRoleInfo()
         {
-            DataTable dt = roleInfo.getAllRoleInfo();
+            DataTable dt = roleInfo.GetAllRoleInfo(string.Empty);
             listBoxControl1.DataSource = dt;
             listBoxControl1.DisplayMember = "rolename";
             listBoxControl1.ValueMember = "roleid";
@@ -44,6 +44,15 @@ namespace WindowsForms.UserManager
             treeList1.ParentFieldName = "parentid";
             treeList1.Columns[0].Caption = "菜单";
             treeList1.OptionsView.ShowCheckBoxes = true;
+            ExpandTree();
+        }
+
+        private void ExpandTree()
+        {
+            foreach (TreeListNode nodes in treeList1.Nodes)
+            {
+                nodes.ExpandAll();
+            }
         }
 
         private void listBoxControl1_Click(object sender, EventArgs e)
@@ -62,7 +71,7 @@ namespace WindowsForms.UserManager
 
         private void role_menus(int roleid)
         {
-            DataTable dtRoleMenu = roleInfo.getRoleMenu(roleid);
+            DataTable dtRoleMenu = roleInfo.GetRoleMenu(roleid);
             Dictionary<int, string> DicRoleMenu = new Dictionary<int, string>();
             //将角色权限装在到DicRoleMenu中
             foreach (DataRow dr in dtRoleMenu.Rows)
@@ -171,7 +180,7 @@ namespace WindowsForms.UserManager
                         GetCheckedID(root);
                     }
                 }
-                MessageBox.Show(roleInfo.updateRoleMenu(roleid, lstCheckedID) > 0 ? "更新成功" : "更新失败");
+                MessageBox.Show(roleInfo.UpdateRoleMenu(roleid, lstCheckedID) > 0 ? "更新成功" : "更新失败");
             }
             catch (Exception ex)
             {

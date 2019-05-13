@@ -84,6 +84,12 @@
     <Compile Include="UserManager\frmAddMenu.Designer.cs">
       <DependentUpon>frmAddMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserManager\frmAddRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManager\frmAddRole.Designer.cs">
+      <DependentUpon>frmAddRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManager\frmAddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserManager\frmAddMenu.resx">
       <DependentUpon>frmAddMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserManager\frmAddRole.resx">
+      <DependentUpon>frmAddRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManager\frmAddUser.resx">
       <DependentUpon>frmAddUser.cs</DependentUpon>

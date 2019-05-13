@@ -49,7 +49,6 @@ namespace WindowsForms.UserManager
                 #endregion
                 string menuname = txtmenuname.Text.Trim();
                 string path = txtpath.Text.Trim();
-                int n = -1;
                 int parentid = String.IsNullOrEmpty(comboxparentno.Text.ToString()) ? 0 : Convert.ToInt32(comboxparentno.SelectedValue);//不填写默认是根节点
                 int sort = String.IsNullOrEmpty(txtsort.Text.Trim()) ? 0 : Convert.ToInt32(txtsort.Text.Trim());
                 if (flag == 0)

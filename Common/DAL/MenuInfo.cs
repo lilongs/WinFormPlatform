@@ -10,11 +10,18 @@ namespace Common.DAL
 {
     public class MenuInfo
     {
+
+        public int menuid { get; set; }
+        public string menuname { get; set; }
+        public string path { get; set; }
+        public int parentid { get; set; }
+        public int sort { get; set; }
+
         private TempTest sqlconn = new TempTest();
 
         public DataTable getAllMenuInfo()
         {
-            string sql = "select menuid,parentid,menuname from menuinfo";
+            string sql = "select menuid,parentid,menuname from menuinfo order by sort";
             return sqlconn.Query(sql).Tables[0];
         }
 
@@ -23,11 +30,11 @@ namespace Common.DAL
             string sql = string.Empty;
             if (String.IsNullOrEmpty(menuname))
             {
-                sql = "select * from menuinfo order by menuid,sort";
+                sql = "select * from menuinfo order by sort";
             }
             else
             {
-                sql = "select * from menuinfo where menuname like '%"+menuname+ "%' order by menuid,sort";
+                sql = "select * from menuinfo where menuname like '%"+menuname+ "%' order by sort";
             } 
             return sqlconn.Query(sql).Tables[0];
         }

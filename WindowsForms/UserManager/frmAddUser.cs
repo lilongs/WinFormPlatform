@@ -53,7 +53,7 @@ namespace WindowsForms.UserManager
 
         private void SetRoleInfo()
         {
-            DataTable dt = roleInfo.getAllRoleInfo();
+            DataTable dt = roleInfo.GetAllRoleInfo(string.Empty);
             comboxrole.DataSource = dt;
             comboxrole.DisplayMember = "rolename";
             comboxrole.ValueMember = "roleid";

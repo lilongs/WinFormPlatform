@@ -35,12 +35,15 @@ namespace Common.DAL
             return sqlconn.ExecuteSql(sql, param)>0?true:false;
         }
 
-        public void loginlog(string username)
+        public void operatelog(string username,string ip, string computername, string formname)
         {
             string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "insert into loginlog values(@username,@createdate)";
+            string sql = "insert into operatelog values(@username,@ip,@computername,@formname,@createdate)";
             SqlParameter[] param = new SqlParameter[] {
                  new SqlParameter("@username",username),
+                 new SqlParameter("@ip",ip),
+                new SqlParameter("@computername",computername),
+                new SqlParameter("@formname",formname),
                 new SqlParameter("@createdate",now)
             };
             sqlconn.ExecuteSql(sql, param);

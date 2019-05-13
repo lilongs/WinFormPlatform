@@ -1,4 +1,5 @@
-﻿using Common.Util;
+﻿using Common.DAL;
+using Common.Util;
 using DevExpress.XtraBars;
 using DevExpress.XtraTab;
 using System;
@@ -7,7 +8,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.UserManager;
@@ -24,7 +28,9 @@ namespace WindowsForms
         public DataTable userMenu = new DataTable();//用户菜单信息
         Dictionary<int, string> Groups = new Dictionary<int, string>();//菜单组别信息
         Dictionary<int, Dictionary<string, string>> Menus = new Dictionary<int, Dictionary<string, string>>();//组别，菜单名，窗体路径信息
-
+        sysUser sysUser = new sysUser();
+        public string ip = string.Empty;
+        public string computername = string.Empty;
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -33,9 +39,18 @@ namespace WindowsForms
 
         private void InitSystem()
         {
+            getClientInfo();
             SetUserInfo();
             getMenuGroups();
             InitMenu();
+        }
+
+        private void getClientInfo()
+        {
+            string HostName = Dns.GetHostName();
+            IPAddress[] iPAddresses = Dns.GetHostAddresses(HostName);
+            ip = iPAddresses.First(ip => ip.AddressFamily == AddressFamily.InterNetwork).ToString();
+            computername = Environment.MachineName;
         }
 
         private void SetUserInfo()
@@ -121,6 +136,16 @@ namespace WindowsForms
             {
                 string path = e.Item.Tag.ToString();
                 string formname = e.Item.Caption.ToString();
+
+                Thread thread1 = new Thread(new ThreadStart(
+                            delegate 
+                            {
+                                InsertOperateLog(formname);
+                            }
+                            ));
+                thread1.IsBackground = true;
+                thread1.Start();
+
                 Form form = null;
                 if (!String.IsNullOrEmpty(formname))
                 {
@@ -148,6 +173,11 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void InsertOperateLog(string formname)
+        {
+            sysUser.operatelog(userMenu.Rows[0]["username"].ToString(), ip, computername, formname);
         }
 
         private void Add_TabPage(Form form, String title,string tag)

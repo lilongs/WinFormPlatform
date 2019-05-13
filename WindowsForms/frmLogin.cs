@@ -59,7 +59,8 @@ namespace WindowsForms
         {
             dtUserMenu = sysUser.getUserMenuInfo(txtUsername.Text.Trim());
             dtAllGroup = menuInfo.getAllGroupInfo();
-            sysUser.loginlog(txtUsername.Text.Trim());
+
+            
         }
 
         private bool CheckInput()

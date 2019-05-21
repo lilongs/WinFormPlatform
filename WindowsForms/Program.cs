@@ -16,7 +16,7 @@ namespace WindowsForms
         [STAThread]
         static void Main()
         {
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             CheckVersion();
@@ -26,11 +26,11 @@ namespace WindowsForms
         //版本更新
         static void CheckVersion()
         {
-            string Localversion=Application.ProductVersion.ToString();
+            string Localversion = Application.ProductVersion.ToString();
             string ServerVersion = ClientVersion.ServerVersion();
             if (Localversion != ServerVersion)
             {
-                DialogResult dr = MessageBox.Show("当前程序有最新版可更新，是否立即更新？","提示",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("当前程序有最新版可更新，是否立即更新？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dr == DialogResult.OK)
                 {
                     Process pr = new Process();

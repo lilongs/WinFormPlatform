@@ -53,30 +53,37 @@ namespace Update
 
         private void DealWithUpdateList()
         {
-            string path = Application.StartupPath;
-            foreach (FileInfo file in fileInfos)
+            try
             {
-                if (File.Exists(path + "\\" + file.Name))
+                string path = Application.StartupPath;
+                foreach (FileInfo file in fileInfos)
                 {
-                    File.Delete(path + "\\" + file.Name);
+                    if (File.Exists(path + "\\" + file.Name))
+                    {
+                        File.Delete(path + "\\" + file.Name);
+                    }
+                    file.CopyTo(path + "\\" + file.Name);
+                    dealCount++;
+                    this.labelControl3.Text = dealCount.ToString();
+                    Application.DoEvents();
+                    progressBarControl1.Position += 1;
                 }
-                file.CopyTo(path + "\\" + file.Name);
-                dealCount++;
-                this.labelControl3.Text = dealCount.ToString();
-                Application.DoEvents();
-                progressBarControl1.Position += 1;
-            }
 
-            if (dealCount == count)
-            {
-                DialogResult dr = MessageBox.Show("更新成功，是否启动主程序！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (dr == DialogResult.OK)
+                if (dealCount == count)
                 {
-                    Process pr = new Process();
-                    pr.StartInfo.FileName = "WindowsForms.exe";
-                    pr.Start();
-                    Application.Exit();
+                    DialogResult dr = MessageBox.Show("更新成功，是否启动主程序！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (dr == DialogResult.OK)
+                    {
+                        Process pr = new Process();
+                        pr.StartInfo.FileName = "WindowsForms.exe";
+                        pr.Start();
+                        Application.Exit();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

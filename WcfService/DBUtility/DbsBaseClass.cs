@@ -5,12 +5,13 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using System.Configuration;
 
 namespace WcfService.DBUtility
 {
     public abstract class DbsBaseClass : IDbs
     {
-        public static string ConStr = "server=127.0.0.1;database=Test;uid=sa;pwd=Ll@20190505;";
+        public static string ConStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
         protected string connectionString;
         public virtual string ConnectionString

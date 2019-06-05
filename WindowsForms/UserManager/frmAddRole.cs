@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference2;
 
 namespace WindowsForms.UserManager
 {
@@ -17,8 +17,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-
-        RoleInfo roleInfo = new RoleInfo();
+        RoleManagerInterfaceClient client = new RoleManagerInterfaceClient();
         public string username = string.Empty;
         public int roleid = -1;
         public string rolename = string.Empty;
@@ -47,7 +46,7 @@ namespace WindowsForms.UserManager
                 }
                 if (flag == 0)
                 {
-                    if (roleInfo.InsertRoleInfo(rolename, remark, username))
+                    if (client.InsertRoleInfo(rolename, remark, username))
                     {
                         MessageBox.Show("添加成功！");
                         this.DialogResult = DialogResult.OK;
@@ -59,7 +58,7 @@ namespace WindowsForms.UserManager
                 }
                 else
                 {
-                    if (roleInfo.UpdateRoleInfo(roleid, rolename, remark, username))
+                    if (client.UpdateRoleInfo(roleid, rolename, remark, username))
                     {
                         MessageBox.Show("修改成功！");
                         this.DialogResult = DialogResult.OK;

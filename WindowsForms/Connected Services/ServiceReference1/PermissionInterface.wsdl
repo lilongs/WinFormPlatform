@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PermissionInterface" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:52192/Services/PermissionInterface.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:52192/Services/PermissionInterface.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:52192/Services/PermissionInterface.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost:52192/Services/PermissionInterface.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPermissionInterface_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_UpdatePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePassword" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_UpdatePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_Operatelog_InputMessage">
+    <wsdl:part name="parameters" element="tns:Operatelog" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_Operatelog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OperatelogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_CheckUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUsername" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_CheckUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_GetUserMenuInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserMenuInfo" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_GetUserMenuInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserMenuInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_GetUserInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_GetUserInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_StopUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopUser" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionInterface_StopUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPermissionInterface">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/Login" message="tns:IPermissionInterface_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/LoginResponse" message="tns:IPermissionInterface_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/UpdatePassword" message="tns:IPermissionInterface_UpdatePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/UpdatePasswordResponse" message="tns:IPermissionInterface_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Operatelog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/Operatelog" message="tns:IPermissionInterface_Operatelog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/OperatelogResponse" message="tns:IPermissionInterface_Operatelog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/CheckUsername" message="tns:IPermissionInterface_CheckUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/CheckUsernameResponse" message="tns:IPermissionInterface_CheckUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/Register" message="tns:IPermissionInterface_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/RegisterResponse" message="tns:IPermissionInterface_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/UpdateUser" message="tns:IPermissionInterface_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/UpdateUserResponse" message="tns:IPermissionInterface_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMenuInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/GetUserMenuInfo" message="tns:IPermissionInterface_GetUserMenuInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/GetUserMenuInfoResponse" message="tns:IPermissionInterface_GetUserMenuInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/GetUserInfo" message="tns:IPermissionInterface_GetUserInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/GetUserInfoResponse" message="tns:IPermissionInterface_GetUserInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionInterface/StopUser" message="tns:IPermissionInterface_StopUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionInterface/StopUserResponse" message="tns:IPermissionInterface_StopUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IPermissionInterface" type="tns:IPermissionInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Operatelog">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/Operatelog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUsername">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/CheckUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMenuInfo">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/GetUserMenuInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopUser">
+      <soap:operation soapAction="http://tempuri.org/IPermissionInterface/StopUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PermissionInterface">
+    <wsdl:port name="BasicHttpBinding_IPermissionInterface" binding="tns:BasicHttpBinding_IPermissionInterface">
+      <soap:address location="http://localhost:52192/Services/PermissionInterface.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

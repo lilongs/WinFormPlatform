@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using Common.Util;
+﻿using WindowsForms.Util;
 using DevExpress.XtraBars;
 using DevExpress.XtraTab;
 using System;
@@ -15,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.UserManager;
+using WindowsForms.ServiceReference1;
 
 namespace WindowsForms
 {
@@ -24,11 +24,11 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
+        PermissionInterfaceClient client = new PermissionInterfaceClient();
         public DataTable allGroup = new DataTable();
         public DataTable userMenu = new DataTable();//用户菜单信息
         Dictionary<int, string> Groups = new Dictionary<int, string>();//菜单组别信息
         Dictionary<int, Dictionary<string, string>> Menus = new Dictionary<int, Dictionary<string, string>>();//组别，菜单名，窗体路径信息
-        sysUser sysUser = new sysUser();
         public string ip = string.Empty;
         public string computername = string.Empty;
 
@@ -177,7 +177,7 @@ namespace WindowsForms
 
         private void InsertOperateLog(string formname)
         {
-            sysUser.operatelog(userMenu.Rows[0]["username"].ToString(), ip, computername, formname);
+            client.Operatelog(userMenu.Rows[0]["username"].ToString(), ip, computername, formname);
         }
 
         private void Add_TabPage(Form form, String title,string tag)
@@ -228,15 +228,25 @@ namespace WindowsForms
             tabControl1.SelectedTabPage = selectedPage;
         }
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void tabControl1_CloseButtonClick(object sender, EventArgs e)
         {
             if(tabControl1.SelectedTabPage.Text!="首页")
             tabControl1.TabPages.Remove(this.tabControl1.SelectedTabPage);
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定退出系统？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                //需要先释放资源，否则会重复执行该事件
+                Dispose();
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

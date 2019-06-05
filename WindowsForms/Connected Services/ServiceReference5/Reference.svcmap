@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7936033e-2368-4786-94fc-5bb1132d6a87" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:52192/Services/DeptInfoManagerInterface.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DeptInfoManagerInterface.xsd" MetadataType="Schema" ID="8f0515e6-db02-4e14-a653-aacbc36269c2" SourceId="1" SourceUrl="http://localhost:52192/Services/DeptInfoManagerInterface.svc?xsd=xsd1" />
+    <MetadataFile FileName="DeptInfoManagerInterface1.xsd" MetadataType="Schema" ID="3ee3bb24-5921-4cd6-bf55-16db51e002b8" SourceId="1" SourceUrl="http://localhost:52192/Services/DeptInfoManagerInterface.svc?xsd=xsd0" />
+    <MetadataFile FileName="DeptInfoManagerInterface.wsdl" MetadataType="Wsdl" ID="61d26813-f0d7-4674-98f2-47205368c7c9" SourceId="1" SourceUrl="http://localhost:52192/Services/DeptInfoManagerInterface.svc?wsdl" />
+    <MetadataFile FileName="DeptInfoManagerInterface.disco" MetadataType="Disco" ID="ecc68380-eca8-467b-b73e-92d35c14290f" SourceId="1" SourceUrl="http://localhost:52192/Services/DeptInfoManagerInterface.svc?disco" />
+    <MetadataFile FileName="DeptInfoManagerInterface2.xsd" MetadataType="Schema" ID="9f2aba6f-7681-42e5-ba39-9ae8c39bb490" SourceId="1" SourceUrl="http://localhost:52192/Services/DeptInfoManagerInterface.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

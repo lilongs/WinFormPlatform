@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using DevExpress.XtraTreeList.Nodes;
+﻿using DevExpress.XtraTreeList.Nodes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference3;
 
 namespace WindowsForms.UserManager
 {
@@ -18,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        MenuInfo menuInfo = new MenuInfo();
+        MenuManagerInterfaceClient client = new MenuManagerInterfaceClient();
         public List<MenuInfo> lstChecked = new List<MenuInfo>();
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace WindowsForms.UserManager
 
         private void LoadMenuInfo(string menuname)
         {
-            DataTable dt = menuInfo.getAllMenuInfo(menuname);
+            DataTable dt = client.GetAllMenuInfoByName(menuname);
             this.gdcInfo.DataSource = dt;
             gdcInfo.KeyFieldName = "menuid";
             gdcInfo.ParentFieldName = "parentid";
@@ -128,5 +128,15 @@ namespace WindowsForms.UserManager
                 LoadMenuInfo(string.Empty);
             }
         }
+    }
+    public class MenuInfo
+    {
+
+        public int menuid { get; set; }
+        public string menuname { get; set; }
+        public string path { get; set; }
+        public int parentid { get; set; }
+        public int sort { get; set; }
+
     }
 }

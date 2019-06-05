@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference1;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +17,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        sysUser sysuser = new sysUser();
+        PermissionInterfaceClient client = new PermissionInterfaceClient();
 
         private void frmUserManager_Load(object sender, EventArgs e)
         {
@@ -26,7 +26,7 @@ namespace WindowsForms.UserManager
 
         private void LoadUserInfo(string username)
         {
-            DataTable dtData = sysuser.getUserInfo(username);
+            DataTable dtData = client.GetUserInfo(username);
             this.gdcInfo.DataSource = dtData;
         }
 
@@ -58,7 +58,7 @@ namespace WindowsForms.UserManager
                 {
                     listusername.Add(gdvInfo.GetDataRow(num)["username"].ToString());
                 }
-                MessageBox.Show(sysuser.StopUser(listusername)?"禁用成功":"禁用失败");
+                MessageBox.Show(client.StopUser(listusername)?"禁用成功":"禁用失败");
             }
         }
 

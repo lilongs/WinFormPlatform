@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using DevExpress.XtraTreeList.Nodes;
+﻿using DevExpress.XtraTreeList.Nodes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference2;
+using WindowsForms.ServiceReference3;
 
 namespace WindowsForms.UserManager
 {
@@ -18,8 +19,8 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        RoleInfo roleInfo = new RoleInfo();
-        MenuInfo menuInfo = new MenuInfo();
+        RoleManagerInterfaceClient client = new RoleManagerInterfaceClient();
+        MenuManagerInterfaceClient client2 = new MenuManagerInterfaceClient();
         private List<int> lstCheckedID = new List<int>();//选择局ID集合
 
         private void frmPermissionManager_Load(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace WindowsForms.UserManager
 
         private void LoadRoleInfo()
         {
-            DataTable dt = roleInfo.GetAllRoleInfo(string.Empty);
+            DataTable dt = client.GetAllRoleInfo(string.Empty);
             listBoxControl1.DataSource = dt;
             listBoxControl1.DisplayMember = "rolename";
             listBoxControl1.ValueMember = "roleid";
@@ -38,7 +39,7 @@ namespace WindowsForms.UserManager
 
         private void LoadMenuInfo()
         {
-            DataTable dt = menuInfo.getAllMenuInfo();
+            DataTable dt = client2.GetAllMenuInfo();
             this.treeList1.DataSource = dt;
             treeList1.KeyFieldName = "menuid";
             treeList1.ParentFieldName = "parentid";
@@ -71,7 +72,7 @@ namespace WindowsForms.UserManager
 
         private void role_menus(int roleid)
         {
-            DataTable dtRoleMenu = roleInfo.GetRoleMenu(roleid);
+            DataTable dtRoleMenu = client.GetRoleMenu(roleid);
             Dictionary<int, string> DicRoleMenu = new Dictionary<int, string>();
             //将角色权限装在到DicRoleMenu中
             foreach (DataRow dr in dtRoleMenu.Rows)
@@ -180,7 +181,7 @@ namespace WindowsForms.UserManager
                         GetCheckedID(root);
                     }
                 }
-                MessageBox.Show(roleInfo.UpdateRoleMenu(roleid, lstCheckedID) > 0 ? "更新成功" : "更新失败");
+                MessageBox.Show(client.UpdateRoleMenu(roleid, lstCheckedID) > 0 ? "更新成功" : "更新失败");
             }
             catch (Exception ex)
             {

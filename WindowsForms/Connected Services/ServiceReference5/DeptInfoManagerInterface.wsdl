@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DeptInfoManagerInterface" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:52192/Services/DeptInfoManagerInterface.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:52192/Services/DeptInfoManagerInterface.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:52192/Services/DeptInfoManagerInterface.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDeptInfoManagerInterface_GetAllDeptInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDeptInfo" />
+  </wsdl:message>
+  <wsdl:message name="IDeptInfoManagerInterface_GetAllDeptInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDeptInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeptInfoManagerInterface_InsertDeptInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDeptInfo" />
+  </wsdl:message>
+  <wsdl:message name="IDeptInfoManagerInterface_InsertDeptInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertDeptInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeptInfoManagerInterface_UpdateDeptInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeptInfo" />
+  </wsdl:message>
+  <wsdl:message name="IDeptInfoManagerInterface_UpdateDeptInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeptInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDeptInfoManagerInterface">
+    <wsdl:operation name="GetAllDeptInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeptInfoManagerInterface/GetAllDeptInfo" message="tns:IDeptInfoManagerInterface_GetAllDeptInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeptInfoManagerInterface/GetAllDeptInfoResponse" message="tns:IDeptInfoManagerInterface_GetAllDeptInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDeptInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeptInfoManagerInterface/InsertDeptInfo" message="tns:IDeptInfoManagerInterface_InsertDeptInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeptInfoManagerInterface/InsertDeptInfoResponse" message="tns:IDeptInfoManagerInterface_InsertDeptInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeptInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeptInfoManagerInterface/UpdateDeptInfo" message="tns:IDeptInfoManagerInterface_UpdateDeptInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeptInfoManagerInterface/UpdateDeptInfoResponse" message="tns:IDeptInfoManagerInterface_UpdateDeptInfo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDeptInfoManagerInterface" type="tns:IDeptInfoManagerInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllDeptInfo">
+      <soap:operation soapAction="http://tempuri.org/IDeptInfoManagerInterface/GetAllDeptInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDeptInfo">
+      <soap:operation soapAction="http://tempuri.org/IDeptInfoManagerInterface/InsertDeptInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeptInfo">
+      <soap:operation soapAction="http://tempuri.org/IDeptInfoManagerInterface/UpdateDeptInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DeptInfoManagerInterface">
+    <wsdl:port name="BasicHttpBinding_IDeptInfoManagerInterface" binding="tns:BasicHttpBinding_IDeptInfoManagerInterface">
+      <soap:address location="http://localhost:52192/Services/DeptInfoManagerInterface.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -41,12 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\ClientVersion.cs" />
-    <Compile Include="DAL\DeptInfo.cs" />
-    <Compile Include="DAL\MenuInfo.cs" />
     <Compile Include="DAL\pathValue.cs" />
-    <Compile Include="DAL\RoleInfo.cs" />
-    <Compile Include="DAL\sysUser.cs" />
     <Compile Include="DBUtility\Dbs.classes.cs" />
     <Compile Include="DBUtility\DbsBaseClass.cs" />
     <Compile Include="DBUtility\IDbs.cs" />

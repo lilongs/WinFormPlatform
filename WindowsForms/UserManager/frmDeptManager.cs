@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference5;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +17,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        DeptInfo deptInfo = new DeptInfo();
+        DeptInfoManagerInterfaceClient client = new DeptInfoManagerInterfaceClient();
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -26,7 +26,7 @@ namespace WindowsForms.UserManager
 
         private void LoadDeptInfo(string deptname)
         {
-            DataTable dtData = deptInfo.getAllDeptInfo(deptname);
+            DataTable dtData = client.GetAllDeptInfo(deptname);
             this.gdcInfo.DataSource = dtData;
         }
 

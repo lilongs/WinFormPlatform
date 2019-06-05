@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using Common.Util;
+﻿using WindowsForms.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference1;
+using WindowsForms.ServiceReference3;
 
 namespace WindowsForms
 {
@@ -20,8 +21,8 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
-        sysUser sysUser = new sysUser();
-        MenuInfo menuInfo = new MenuInfo();
+        PermissionInterfaceClient client = new PermissionInterfaceClient();
+        MenuManagerInterfaceClient client2 = new MenuManagerInterfaceClient();
         DataTable dtUserMenu = new DataTable();
         DataTable dtAllGroup = new DataTable();
         
@@ -35,7 +36,7 @@ namespace WindowsForms
             Thread thread1 = new Thread(new ThreadStart(LoadMenuInfo));
             thread1.IsBackground = true;
            
-            bool result = sysUser.login(username, password);
+            bool result = client.Login(username, password);
 
             if (result)
             {
@@ -57,8 +58,8 @@ namespace WindowsForms
 
         private void LoadMenuInfo()
         {
-            dtUserMenu = sysUser.getUserMenuInfo(txtUsername.Text.Trim());
-            dtAllGroup = menuInfo.getAllGroupInfo();
+            dtUserMenu = client.GetUserMenuInfo(txtUsername.Text.Trim());
+            dtAllGroup = client2.GetAllGroupInfo();
 
             
         }

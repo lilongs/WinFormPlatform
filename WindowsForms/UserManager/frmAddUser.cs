@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using Common.Util;
+﻿using WindowsForms.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference1;
+using WindowsForms.ServiceReference2;
+using WindowsForms.ServiceReference5;
 
 namespace WindowsForms.UserManager
 {
@@ -18,9 +20,9 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        sysUser sysUser = new sysUser();
-        RoleInfo roleInfo = new RoleInfo();
-        DeptInfo deptInfo = new DeptInfo();
+        PermissionInterfaceClient client = new PermissionInterfaceClient();
+        RoleManagerInterfaceClient client2 = new RoleManagerInterfaceClient();
+        DeptInfoManagerInterfaceClient client3 = new DeptInfoManagerInterfaceClient();
         public string username = string.Empty;//创建人
         public string username2 = string.Empty;//用户名
         public string realname = string.Empty;
@@ -45,7 +47,7 @@ namespace WindowsForms.UserManager
 
         private void SetDeptInfo()
         {
-            DataTable dt = deptInfo.getAllDeptInfo(string.Empty);
+            DataTable dt = client3.GetAllDeptInfo(string.Empty);
             comboxdept.DataSource = dt;
             comboxdept.DisplayMember = "deptname";
             comboxdept.ValueMember = "deptno";
@@ -53,7 +55,7 @@ namespace WindowsForms.UserManager
 
         private void SetRoleInfo()
         {
-            DataTable dt = roleInfo.GetAllRoleInfo(string.Empty);
+            DataTable dt = client2.GetAllRoleInfo(string.Empty);
             comboxrole.DataSource = dt;
             comboxrole.DisplayMember = "rolename";
             comboxrole.ValueMember = "roleid";
@@ -66,12 +68,12 @@ namespace WindowsForms.UserManager
             
             if (flag == 0)
             {
-                if (sysUser.checkUsername(txtusername.Text.Trim()))
+                if (client.CheckUsername(txtusername.Text.Trim()))
                 {
                     MessageBox.Show("用户名重复");
                     return;
                 }
-                if (sysUser.register(txtusername.Text.Trim(), MD5.MD5Encrypt("666666"), txtrealname.Text.Trim(), txttelephone.Text.Trim(), Convert.ToInt32(String.IsNullOrEmpty(comboxdept.SelectedValue.ToString()) ? -1 : comboxdept.SelectedValue), Convert.ToInt32(String.IsNullOrEmpty(comboxrole.SelectedValue.ToString()) ? -1 : comboxrole.SelectedValue), username))
+                if (client.Register(txtusername.Text.Trim(), MD5.MD5Encrypt("666666"), txtrealname.Text.Trim(), txttelephone.Text.Trim(), Convert.ToInt32(String.IsNullOrEmpty(comboxdept.SelectedValue.ToString()) ? -1 : comboxdept.SelectedValue), Convert.ToInt32(String.IsNullOrEmpty(comboxrole.SelectedValue.ToString()) ? -1 : comboxrole.SelectedValue), username))
                 {
                     MessageBox.Show("添加成功！");
                     this.DialogResult = DialogResult.OK;
@@ -83,7 +85,7 @@ namespace WindowsForms.UserManager
             }
             else
             {
-                if (sysUser.updateUser(txtusername.Text.Trim(),txtrealname.Text.Trim(),txttelephone.Text.Trim(),Convert.ToInt32(comboxdept.SelectedValue), Convert.ToInt32(comboxrole.SelectedValue),username))
+                if (client.UpdateUser(txtusername.Text.Trim(),txtrealname.Text.Trim(),txttelephone.Text.Trim(),Convert.ToInt32(comboxdept.SelectedValue), Convert.ToInt32(comboxrole.SelectedValue),username))
                 {
                     MessageBox.Show("修改成功！");
                     this.DialogResult = DialogResult.OK;

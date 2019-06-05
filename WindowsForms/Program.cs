@@ -1,10 +1,11 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference1;
+using WindowsForms.ServiceReference4;
 
 namespace WindowsForms
 {
@@ -16,7 +17,6 @@ namespace WindowsForms
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             CheckVersion();
@@ -27,7 +27,8 @@ namespace WindowsForms
         static void CheckVersion()
         {
             string Localversion = Application.ProductVersion.ToString();
-            string ServerVersion = ClientVersion.ServerVersion();
+            ClientVersionInterfaceClient client = new ClientVersionInterfaceClient();
+            string ServerVersion = client.ServerVersion();
             if (Localversion != ServerVersion)
             {
                 DialogResult dr = MessageBox.Show("当前程序有最新版可更新，是否立即更新？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);

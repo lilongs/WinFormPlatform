@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference5;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +17,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        DeptInfo deptInfo = new DeptInfo();
+        DeptInfoManagerInterfaceClient client = new DeptInfoManagerInterfaceClient();
         public string username = string.Empty;
         public int deptno = -1;
         public string deptname = string.Empty;
@@ -37,7 +37,7 @@ namespace WindowsForms.UserManager
                 }
                 if (flag == 0)
                 {
-                    if(deptInfo.insertDeptInfo(deptname,remark,username))
+                    if(client.InsertDeptInfo(deptname,remark,username))
                     {
                         MessageBox.Show("添加成功！");
                         this.DialogResult = DialogResult.OK;
@@ -49,7 +49,7 @@ namespace WindowsForms.UserManager
                 }
                 else
                 {
-                    if (deptInfo.updateDeptInfo(deptno,deptname, remark, username))
+                    if (client.UpdateDeptInfo(deptno,deptname, remark, username))
                     {
                         MessageBox.Show("修改成功！");
                         this.DialogResult = DialogResult.OK;

@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using Common.Util;
+﻿using WindowsForms.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference1;
 
 namespace WindowsForms.UserManager
 {
@@ -18,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        sysUser sysUser = new sysUser();
+        PermissionInterfaceClient client = new PermissionInterfaceClient();
         string username = string.Empty;
 
         private void frmChangePassword_Load(object sender, EventArgs e)
@@ -49,13 +49,13 @@ namespace WindowsForms.UserManager
         private bool CheckOldPassword()
         {
             string password = MD5.MD5Encrypt(this.txtOldPassword.Text.Trim());
-            return sysUser.login(username,password);
+            return client.Login(username,password);
         }
 
         private bool UpdatePassword()
         {
             string password = MD5.MD5Encrypt(this.txtNewPassword2.Text.Trim());
-            return sysUser.UpdatePassword(username, password);
+            return client.UpdatePassword(username, password);
         }
     }
 }

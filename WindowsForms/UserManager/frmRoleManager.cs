@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference2;
 
 namespace WindowsForms.UserManager
 {
@@ -17,8 +17,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        RoleInfo roleInfo = new RoleInfo();
-
+        RoleManagerInterfaceClient client = new RoleManagerInterfaceClient();
         private void frmRoleManager_Load(object sender, EventArgs e)
         {
             LoadRoleInfo(string.Empty);
@@ -31,7 +30,7 @@ namespace WindowsForms.UserManager
 
         private void LoadRoleInfo(string rolename)
         {
-            DataTable dtData = roleInfo.GetAllRoleInfo(rolename);
+            DataTable dtData = client.GetAllRoleInfo(rolename);
             this.gdcInfo.DataSource = dtData;
         }
 

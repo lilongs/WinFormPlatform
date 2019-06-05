@@ -1,5 +1,4 @@
-﻿using Common.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsForms.ServiceReference3;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +17,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        MenuInfo menuInfo = new MenuInfo();
+        MenuManagerInterfaceClient client = new MenuManagerInterfaceClient();
         public string username = string.Empty;
         public int menuid = -1;
         public string menuname = string.Empty;
@@ -53,7 +53,7 @@ namespace WindowsForms.UserManager
                 int sort = String.IsNullOrEmpty(txtsort.Text.Trim()) ? 0 : Convert.ToInt32(txtsort.Text.Trim());
                 if (flag == 0)
                 {
-                    if (menuInfo.insertMenuInfo(menuname, path, parentid, sort, username))
+                    if (client.InsertMenuInfo(menuname, path, parentid, sort, username))
                     {
                         MessageBox.Show("添加成功！");
                         this.DialogResult = DialogResult.OK;
@@ -65,7 +65,7 @@ namespace WindowsForms.UserManager
                 }
                 else
                 {
-                    if (menuInfo.updateMenuInfo(menuid, menuname, path, parentid, sort, username))
+                    if (client.UpdateMenuInfo(menuid, menuname, path, parentid, sort, username))
                     {
                         MessageBox.Show("修改成功！");
                         this.DialogResult = DialogResult.OK;
@@ -101,7 +101,7 @@ namespace WindowsForms.UserManager
 
         private void LoadGroupInfo()
         {
-            comboxparentno.DataSource = menuInfo.getAllGroupInfo();
+            comboxparentno.DataSource = client.GetAllGroupInfo();
             comboxparentno.DisplayMember = "menuname";
             comboxparentno.ValueMember = "menuid";
         }

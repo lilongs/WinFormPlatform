@@ -239,14 +239,17 @@ namespace WindowsForms
             DialogResult dr = MessageBox.Show("确定退出系统？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
-                //需要先释放资源，否则会重复执行该事件
-                Dispose();
-                Application.Exit();
+                e.Cancel = false;
             }
             else
             {
                 e.Cancel = true;
             }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -44,10 +44,11 @@
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.comboxdept = new System.Windows.Forms.ComboBox();
-            this.comboxrole = new System.Windows.Forms.ComboBox();
+            this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtusername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtrealname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttelephone.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtusername
@@ -187,20 +188,21 @@
             this.comboxdept.Size = new System.Drawing.Size(154, 20);
             this.comboxdept.TabIndex = 8;
             // 
-            // comboxrole
+            // checkedComboBoxEdit1
             // 
-            this.comboxrole.FormattingEnabled = true;
-            this.comboxrole.Location = new System.Drawing.Point(175, 188);
-            this.comboxrole.Name = "comboxrole";
-            this.comboxrole.Size = new System.Drawing.Size(154, 20);
-            this.comboxrole.TabIndex = 10;
+            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(175, 186);
+            this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
+            this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.checkedComboBoxEdit1.Size = new System.Drawing.Size(154, 20);
+            this.checkedComboBoxEdit1.TabIndex = 13;
             // 
             // frmAddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 310);
-            this.Controls.Add(this.comboxrole);
+            this.Controls.Add(this.checkedComboBoxEdit1);
             this.Controls.Add(this.comboxdept);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl9);
@@ -224,6 +226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtusername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtrealname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttelephone.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,6 +250,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private System.Windows.Forms.ComboBox comboxdept;
-        private System.Windows.Forms.ComboBox comboxrole;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
     }
 }

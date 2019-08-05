@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="8Rh2u7b5+6WYLxxPNBtzCNm/Q4A=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="6pN9MJvWfU4Zy8W+0f2PiyovfhM=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IPermissionInterface">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IPermissionInterface1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IPermissionInterface</serializedValue>
+          <serializedValue>BasicHttpBinding_IPermissionInterface1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IPermissionInterface" contract="ServiceReference1.IPermissionInterface" bindingType="basicHttpBinding" address="http://localhost:52192/Services/PermissionInterface.svc" bindingConfiguration="BasicHttpBinding_IPermissionInterface">
+    <endpoint name="BasicHttpBinding_IPermissionInterface" contract="ServiceReference1.IPermissionInterface" bindingType="basicHttpBinding" address="http://localhost:52192/Services/PermissionInterface.svc" bindingConfiguration="BasicHttpBinding_IPermissionInterface1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:52192/Services/PermissionInterface.svc</serializedValue>
@@ -124,7 +124,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IPermissionInterface</serializedValue>
+          <serializedValue>BasicHttpBinding_IPermissionInterface1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>ServiceReference1.IPermissionInterface</serializedValue>

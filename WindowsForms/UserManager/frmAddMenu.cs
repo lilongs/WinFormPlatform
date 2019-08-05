@@ -101,7 +101,17 @@ namespace WindowsForms.UserManager
 
         private void LoadGroupInfo()
         {
-            comboxparentno.DataSource = client.GetAllGroupInfo();
+            DataTable dt = new DataTable();
+            dt= client.GetAllGroupInfo();
+            DataRow dr = dt.NewRow();
+            dr["menuid"] = 0;
+            dr["menuname"] = "根节点";
+            dt.Rows.Add(dr);
+            DataView dv = new DataView(dt);
+            dv.Sort="menuid asc";
+            dt = dv.ToTable();
+
+            comboxparentno.DataSource = dt;
             comboxparentno.DisplayMember = "menuname";
             comboxparentno.ValueMember = "menuid";
         }

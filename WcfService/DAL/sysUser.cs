@@ -33,10 +33,10 @@ namespace WcfService.DAL
                 new SqlParameter("@username",username),
                 new SqlParameter("@password",password)
             };
-            return sqlconn.ExecuteSql(sql, param)>0?true:false;
+            return sqlconn.ExecuteSql(sql, param) > 0 ? true : false;
         }
 
-        public void operatelog(string username,string ip, string computername, string formname)
+        public void operatelog(string username, string ip, string computername, string formname)
         {
             string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             string sql = "insert into operatelog values(@username,@ip,@computername,@formname,@createdate)";
@@ -61,71 +61,97 @@ namespace WcfService.DAL
                 return false;
         }
 
-        public bool register(string username,string password, string realname,string telephone,int deptno,int roleid,string createby)
+        public bool register(string username, string password, string realname, string telephone, int deptno, List<int> roleid, string createby)
         {
-            string sql = @"insert into sysuser(username,password,realname,telephone,deptno,roleid,createtime,createby,status) 
-                            values(@username,@password,@realname,@telephone,@deptno,@roleid,getdate(),@createby,1)";
-            SqlParameter[] param = new SqlParameter[]
+            List<string> list = new List<string>();
+            list.Add(@"insert into sysuser(username,password,realname,telephone,deptno,createtime,createby,status) 
+                        values ('" + username + "','" + password + "','" + realname + "','" + telephone + "'," + deptno + ",getdate(),'" + createby + "',1)");
+            foreach (int id in roleid)
             {
-                new SqlParameter("@username",username),
-                new SqlParameter("@password",password),
-                new SqlParameter("@realname",realname),
-                new SqlParameter("@telephone",telephone),
-                new SqlParameter("@deptno",deptno),
-                new SqlParameter("@roleid",roleid),
-                new SqlParameter("@createby",createby)
-            };
-            return sqlconn.ExecuteSql(sql, param) > 0 ?  true : false;
+                list.Add(@"insert into user_role (username,roleid) values('" + username + "'," + id + ")");
+            }
+
+            return sqlconn.ExecuteSqlTran_SQL(list) > 0 ? true : false;
         }
 
-        public bool updateUser(string username, string realname, string telephone, int deptno, int roleid, string updateby)
+        public bool updateUser(string username, string realname, string telephone, int deptno, List<int> roleid, string updateby)
         {
-            string sql = @"update sysuser set realname=@realname,telephone=@telephone,deptno=@deptno,roleid=@roleid,updatetime=getdate(),updateby=@updateby 
-                            where username=@username";
-            SqlParameter[] param = new SqlParameter[]
+            List<string> list = new List<string>();
+            list.Add(@"update sysuser set realname='" + realname + "',telephone='" + telephone + "',deptno='" + deptno + "',updatetime=getdate(),updateby='" + updateby + "' where username= '" + username + "'");
+            list.Add(@"delete from user_role where username='" + username + "'");
+            foreach (int id in roleid)
             {
-                new SqlParameter("@username",username),
-                new SqlParameter("@realname",realname),
-                new SqlParameter("@telephone",telephone),
-                new SqlParameter("@deptno",deptno),
-                new SqlParameter("@roleid",roleid),
-                new SqlParameter("@updateby",updateby)
-            };
-            return sqlconn.ExecuteSql(sql, param) > 0 ? true : false;
+                list.Add(@"insert into user_role (username,roleid) values('" + username + "'," + id + ")");
+            }
+
+            return sqlconn.ExecuteSqlTran_SQL(list) > 0 ? true : false;
         }
 
         public DataTable getUserMenuInfo(string username)
         {
-            string sql = @"select username,rolename,c.menuid,menuname,parentid,path 
+            string sql = @"select a.username,rolename,c.menuid,menuname,parentid,path 
                         from sysuser a
-                        left join roleinfo b on a.roleid = b.roleid
-                        left join role_menu c on a.roleid = c.roleid
+                        left join user_role e on a.username=e.username
+                        left join roleinfo b on e.roleid = b.roleid
+                        left join role_menu c on e.roleid = c.roleid
                         left join menuinfo d on c.menuid = d.menuid
-                        where a.username = '"+username+ "' and a.status = 1 order by sort";
+                        where a.username = '" + username + "' and a.status = 1 order by sort";
             return sqlconn.Query(sql).Tables[0];
         }
 
         public DataTable getUserInfo(string username)
         {
-            string sql = string.Empty;
-            sql = @"select username, password, realname, telephone,a.createtime, a.createby, status, a.updateby,a.updatetime,b.deptname,c.rolename 
+            StringBuilder sql = new StringBuilder();
+            sql.Append(@"select a.username, password, realname, telephone,a.createtime, a.createby, status, a.updateby,a.updatetime,b.deptname,''as rolename 
                         from sysuser a
-                        left join department b on a.deptno = b.deptno
-                        left join roleinfo c on a.roleid = c.roleid ";
-            if(!String.IsNullOrEmpty(username))
-                        sql=sql+" where a.username like '%"+ username + "%'";
-            return sqlconn.Query(sql).Tables[0];
+                        left join department b on a.deptno = b.deptno ");
+            if (!String.IsNullOrEmpty(username))
+                sql.Append(" where a.username like '%" + username + "%'");
+
+            sql.Append(@"select username,rolename 
+                        from user_role d
+                        left join roleinfo c on d.roleid = c.roleid");
+
+            DataSet ds = new DataSet();
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>();
+
+            ds = sqlconn.Query(sql.ToString());
+            foreach (DataRow dr in ds.Tables[1].Rows)
+            {
+                string name = dr["username"].ToString();
+                string rolename = dr["rolename"].ToString();
+                if (!dic.ContainsKey(name))
+                {
+                    List<string> list = new List<string>();
+                    list.Add(rolename);
+                    dic.Add(name, list);
+                }
+                else
+                {
+                    dic[name].Add(rolename);
+                }
+            }
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                string name = dr["username"].ToString();
+                if (dic.ContainsKey(name))
+                {
+                    dr["rolename"] = String.Join(",", dic[name].ToArray());
+                }
+            }
+            return ds.Tables[0];
         }
 
         public bool StopUser(List<string> listusername)
         {
-            string param=string.Join("','", listusername);
+            string param = string.Join("','", listusername);
             List<string> sql = new List<string>();
-            foreach(string username in listusername)
+            foreach (string username in listusername)
             {
                 sql.Add("update sysuser set status=0 where username ='" + username + "'");
             }
-            return sqlconn.ExecuteSqlTran_SQL(sql)==listusername.Count()?true:false;
+            return sqlconn.ExecuteSqlTran_SQL(sql) == listusername.Count() ? true : false;
         }
     }
 }

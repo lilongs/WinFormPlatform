@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace WindowsForms.ServiceReference1 {
     
     
@@ -42,16 +40,16 @@ namespace WindowsForms.ServiceReference1 {
         System.Threading.Tasks.Task<bool> CheckUsernameAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/Register", ReplyAction="http://tempuri.org/IPermissionInterface/RegisterResponse")]
-        bool Register(string username, string password, string realname, string telephone, int deptno, int roleid, string createby);
+        bool Register(string username, string password, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string createby);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/Register", ReplyAction="http://tempuri.org/IPermissionInterface/RegisterResponse")]
-        System.Threading.Tasks.Task<bool> RegisterAsync(string username, string password, string realname, string telephone, int deptno, int roleid, string createby);
+        System.Threading.Tasks.Task<bool> RegisterAsync(string username, string password, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string createby);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/UpdateUser", ReplyAction="http://tempuri.org/IPermissionInterface/UpdateUserResponse")]
-        bool UpdateUser(string username, string realname, string telephone, int deptno, int roleid, string updateby);
+        bool UpdateUser(string username, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string updateby);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/UpdateUser", ReplyAction="http://tempuri.org/IPermissionInterface/UpdateUserResponse")]
-        System.Threading.Tasks.Task<bool> UpdateUserAsync(string username, string realname, string telephone, int deptno, int roleid, string updateby);
+        System.Threading.Tasks.Task<bool> UpdateUserAsync(string username, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string updateby);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/GetUserMenuInfo", ReplyAction="http://tempuri.org/IPermissionInterface/GetUserMenuInfoResponse")]
         System.Data.DataTable GetUserMenuInfo(string username);
@@ -66,10 +64,10 @@ namespace WindowsForms.ServiceReference1 {
         System.Threading.Tasks.Task<System.Data.DataTable> GetUserInfoAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/StopUser", ReplyAction="http://tempuri.org/IPermissionInterface/StopUserResponse")]
-        bool StopUser(List<string> listusername);
+        bool StopUser(System.Collections.Generic.List<string> listusername);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionInterface/StopUser", ReplyAction="http://tempuri.org/IPermissionInterface/StopUserResponse")]
-        System.Threading.Tasks.Task<bool> StopUserAsync(List<string> listusername);
+        System.Threading.Tasks.Task<bool> StopUserAsync(System.Collections.Generic.List<string> listusername);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -131,19 +129,19 @@ namespace WindowsForms.ServiceReference1 {
             return base.Channel.CheckUsernameAsync(username);
         }
         
-        public bool Register(string username, string password, string realname, string telephone, int deptno, int roleid, string createby) {
+        public bool Register(string username, string password, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string createby) {
             return base.Channel.Register(username, password, realname, telephone, deptno, roleid, createby);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterAsync(string username, string password, string realname, string telephone, int deptno, int roleid, string createby) {
+        public System.Threading.Tasks.Task<bool> RegisterAsync(string username, string password, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string createby) {
             return base.Channel.RegisterAsync(username, password, realname, telephone, deptno, roleid, createby);
         }
         
-        public bool UpdateUser(string username, string realname, string telephone, int deptno, int roleid, string updateby) {
+        public bool UpdateUser(string username, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string updateby) {
             return base.Channel.UpdateUser(username, realname, telephone, deptno, roleid, updateby);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateUserAsync(string username, string realname, string telephone, int deptno, int roleid, string updateby) {
+        public System.Threading.Tasks.Task<bool> UpdateUserAsync(string username, string realname, string telephone, int deptno, System.Collections.Generic.List<int> roleid, string updateby) {
             return base.Channel.UpdateUserAsync(username, realname, telephone, deptno, roleid, updateby);
         }
         
@@ -163,11 +161,11 @@ namespace WindowsForms.ServiceReference1 {
             return base.Channel.GetUserInfoAsync(username);
         }
         
-        public bool StopUser(List<string> listusername) {
+        public bool StopUser(System.Collections.Generic.List<string> listusername) {
             return base.Channel.StopUser(listusername);
         }
         
-        public System.Threading.Tasks.Task<bool> StopUserAsync(List<string> listusername) {
+        public System.Threading.Tasks.Task<bool> StopUserAsync(System.Collections.Generic.List<string> listusername) {
             return base.Channel.StopUserAsync(listusername);
         }
     }

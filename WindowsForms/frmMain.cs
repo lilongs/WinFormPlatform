@@ -55,8 +55,12 @@ namespace WindowsForms
 
         private void SetUserInfo()
         {
+            DataView dv = new DataView(userMenu);
+            DataTable dt = new DataTable();
+            dt = dv.ToTable(true, "rolename");
+            string[] arr = dt.AsEnumerable().Select(d => d.Field<string>("rolename")).ToArray();
             barStaticItem2.Caption = userMenu.Rows[0]["username"].ToString();
-            barStaticItem4.Caption = userMenu.Rows[0]["rolename"].ToString();
+            barStaticItem4.Caption = String.Join(",",arr);
         }
 
         private void getMenuGroups()

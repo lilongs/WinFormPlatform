@@ -126,6 +126,7 @@
             this.barStaticItem4.Caption = "barStaticItem4";
             this.barStaticItem4.Id = 7;
             this.barStaticItem4.Name = "barStaticItem4";
+            this.barStaticItem4.Size = new System.Drawing.Size(150, 0);
             // 
             // barDockControlTop
             // 

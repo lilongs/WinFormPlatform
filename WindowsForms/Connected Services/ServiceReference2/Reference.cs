@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace WindowsForms.ServiceReference2 {
     
     
@@ -30,10 +28,10 @@ namespace WindowsForms.ServiceReference2 {
         System.Threading.Tasks.Task<System.Data.DataTable> GetRoleMenuAsync(int roleid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoleManagerInterface/UpdateRoleMenu", ReplyAction="http://tempuri.org/IRoleManagerInterface/UpdateRoleMenuResponse")]
-        int UpdateRoleMenu(int roleid, List<int> listMenuid);
+        int UpdateRoleMenu(int roleid, System.Collections.Generic.List<int> listMenuid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoleManagerInterface/UpdateRoleMenu", ReplyAction="http://tempuri.org/IRoleManagerInterface/UpdateRoleMenuResponse")]
-        System.Threading.Tasks.Task<int> UpdateRoleMenuAsync(int roleid, List<int> listMenuid);
+        System.Threading.Tasks.Task<int> UpdateRoleMenuAsync(int roleid, System.Collections.Generic.List<int> listMenuid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoleManagerInterface/InsertRoleInfo", ReplyAction="http://tempuri.org/IRoleManagerInterface/InsertRoleInfoResponse")]
         bool InsertRoleInfo(string rolename, string remark, string createby);
@@ -91,11 +89,11 @@ namespace WindowsForms.ServiceReference2 {
             return base.Channel.GetRoleMenuAsync(roleid);
         }
         
-        public int UpdateRoleMenu(int roleid, List<int> listMenuid) {
+        public int UpdateRoleMenu(int roleid, System.Collections.Generic.List<int> listMenuid) {
             return base.Channel.UpdateRoleMenu(roleid, listMenuid);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateRoleMenuAsync(int roleid, List<int> listMenuid) {
+        public System.Threading.Tasks.Task<int> UpdateRoleMenuAsync(int roleid, System.Collections.Generic.List<int> listMenuid) {
             return base.Channel.UpdateRoleMenuAsync(roleid, listMenuid);
         }
         

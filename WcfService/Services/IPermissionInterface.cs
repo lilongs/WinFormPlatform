@@ -25,10 +25,10 @@ namespace WcfService.Services
         bool CheckUsername(string username);
 
         [OperationContract]
-        bool Register(string username, string password, string realname, string telephone, int deptno, int roleid, string createby);
+        bool Register(string username, string password, string realname, string telephone, int deptno, List<int> roleid, string createby);
 
         [OperationContract]
-        bool UpdateUser(string username, string realname, string telephone, int deptno, int roleid, string updateby);
+        bool UpdateUser(string username, string realname, string telephone, int deptno, List<int> roleid, string updateby);
 
         [OperationContract]
         DataTable GetUserMenuInfo(string username);

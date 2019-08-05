@@ -39,7 +39,7 @@ namespace WcfService.Services
             sysUser.operatelog(username, ip, computername, formname);
         }
 
-        public bool Register(string username, string password, string realname, string telephone, int deptno, int roleid, string createby)
+        public bool Register(string username, string password, string realname, string telephone, int deptno, List<int> roleid, string createby)
         {
             return sysUser.register(username, password, realname, telephone, deptno, roleid, createby);
         }
@@ -54,7 +54,7 @@ namespace WcfService.Services
             return sysUser.UpdatePassword(username,password);
         }
 
-        public bool UpdateUser(string username, string realname, string telephone, int deptno, int roleid, string updateby)
+        public bool UpdateUser(string username, string realname, string telephone, int deptno, List<int> roleid, string updateby)
         {
             return sysUser.updateUser(username, realname, telephone, deptno, roleid, updateby);
         }

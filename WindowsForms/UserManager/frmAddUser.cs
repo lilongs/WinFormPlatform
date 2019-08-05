@@ -33,15 +33,22 @@ namespace WindowsForms.UserManager
 
         private void frmAddUser_Load(object sender, EventArgs e)
         {
-            SetDeptInfo();
-            SetRoleInfo();
-            if (flag == 1)
+            try
             {
-                this.txtusername.Text = username2;
-                this.txtrealname.Text = realname;
-                this.txttelephone.Text = telephone;
-                comboxrole.Text = rolename;
-                comboxdept.Text = deptname;
+                SetDeptInfo();
+                SetRoleInfo();
+                if (flag == 1)
+                {
+                    this.txtusername.Text = username2;
+                    this.txtrealname.Text = realname;
+                    this.txttelephone.Text = telephone;
+                    comboxdept.Text = deptname;
+                    checkedComboBoxEdit1.EditValue = rolename;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("数据加载失败:" + ex.Message);
             }
         }
 
@@ -56,50 +63,63 @@ namespace WindowsForms.UserManager
         private void SetRoleInfo()
         {
             DataTable dt = client2.GetAllRoleInfo(string.Empty);
-            comboxrole.DataSource = dt;
-            comboxrole.DisplayMember = "rolename";
-            comboxrole.ValueMember = "roleid";
+            checkedComboBoxEdit1.Properties.DataSource = dt;
+            checkedComboBoxEdit1.Properties.DisplayMember = "rolename";
+            checkedComboBoxEdit1.Properties.ValueMember = "roleid";
         }
 
         private void btnsure_Click(object sender, EventArgs e)
         {
-            if (!CheckInput())
-                return;
-            
-            if (flag == 0)
+            try
             {
-                if (client.CheckUsername(txtusername.Text.Trim()))
-                {
-                    MessageBox.Show("用户名重复");
+                if (!CheckInput())
                     return;
-                }
-                if (client.Register(txtusername.Text.Trim(), MD5.MD5Encrypt("666666"), txtrealname.Text.Trim(), txttelephone.Text.Trim(), Convert.ToInt32(String.IsNullOrEmpty(comboxdept.SelectedValue.ToString()) ? -1 : comboxdept.SelectedValue), Convert.ToInt32(String.IsNullOrEmpty(comboxrole.SelectedValue.ToString()) ? -1 : comboxrole.SelectedValue), username))
+                List<int> roleid_list = new List<int>();
+                for (int i = 0; i < checkedComboBoxEdit1.Properties.Items.Count; i++)
                 {
-                    MessageBox.Show("添加成功！");
-                    this.DialogResult = DialogResult.OK;
+                    if (checkedComboBoxEdit1.Properties.Items[i].CheckState == CheckState.Checked)
+                    {
+                        roleid_list.Add(Convert.ToInt32(checkedComboBoxEdit1.Properties.Items[i].Value));
+                    }
+                }
+                if (flag == 0)
+                {
+                    if (client.CheckUsername(txtusername.Text.Trim()))
+                    {
+                        MessageBox.Show("用户名重复");
+                        return;
+                    }
+                    if (client.Register(txtusername.Text.Trim(), MD5.MD5Encrypt("666666"), txtrealname.Text.Trim(), txttelephone.Text.Trim(), Convert.ToInt32(String.IsNullOrEmpty(comboxdept.SelectedValue.ToString()) ? -1 : comboxdept.SelectedValue), roleid_list, username))
+                    {
+                        MessageBox.Show("添加成功！");
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("添加失败！");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("添加失败！");
+                    if (client.UpdateUser(txtusername.Text.Trim(), txtrealname.Text.Trim(), txttelephone.Text.Trim(), Convert.ToInt32(comboxdept.SelectedValue), roleid_list, username))
+                    {
+                        MessageBox.Show("修改成功！");
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("添加失败！");
+                    }
                 }
-            }
-            else
+            }catch(Exception ex)
             {
-                if (client.UpdateUser(txtusername.Text.Trim(),txtrealname.Text.Trim(),txttelephone.Text.Trim(),Convert.ToInt32(comboxdept.SelectedValue), Convert.ToInt32(comboxrole.SelectedValue),username))
-                {
-                    MessageBox.Show("修改成功！");
-                    this.DialogResult = DialogResult.OK;
-                }
-                else
-                {
-                    MessageBox.Show("添加失败！");
-                }
+                MessageBox.Show("操作失败:"+ex.Message);
             }
         }
 
         private bool CheckInput()
         {
-            if (String.IsNullOrEmpty(txtusername.Text.Trim()) || String.IsNullOrEmpty(txtrealname.Text.Trim()) || String.IsNullOrEmpty(txttelephone.Text.Trim()) || String.IsNullOrEmpty(comboxrole.Text.Trim()) || String.IsNullOrEmpty(comboxdept.Text.Trim()))
+            if (String.IsNullOrEmpty(txtusername.Text.Trim()) || String.IsNullOrEmpty(txtrealname.Text.Trim()) || String.IsNullOrEmpty(txttelephone.Text.Trim()) || String.IsNullOrEmpty(checkedComboBoxEdit1.Text.Trim()) || String.IsNullOrEmpty(comboxdept.Text.Trim()))
             {
                 MessageBox.Show("请填写带*的必填项！");
                 return false;

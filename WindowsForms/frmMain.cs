@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.UserManager;
 using WindowsForms.ServiceReference1;
+using DevExpress.XtraNavBar;
+using DevExpress.XtraBars.Docking;
 
 namespace WindowsForms
 {
@@ -122,6 +124,11 @@ namespace WindowsForms
                 GroupItem.Name = Groups[item.Key];
                 GroupItem.Caption = Groups[item.Key];
                 bar1.AddItem(GroupItem);
+
+                NavBarGroup navBarGroup = new NavBarGroup();
+                navBarGroup.Name = Groups[item.Key];
+                navBarGroup.Caption = Groups[item.Key];
+                this.navBarControl1.Groups.Add(navBarGroup);
                 foreach (var menu in item.Value)
                 { 
                     BarButtonItem menuItem = new BarButtonItem();
@@ -130,7 +137,59 @@ namespace WindowsForms
                     menuItem.Tag = menu.Value;
                     GroupItem.AddItem(menuItem);
                     menuItem.ItemClick += MenuItem_ItemClick;
+
+                    NavBarItem navBarItem = new NavBarItem();
+                    navBarItem.Name = menu.Key;
+                    navBarItem.Caption = menu.Key;
+                    navBarItem.Tag = menu.Value;
+                    navBarGroup.ItemLinks.Add(navBarItem);
+                    navBarItem.LinkClicked += BarItem_ItemClick;
+                }                
+            }
+        }
+        
+        private void BarItem_ItemClick(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                string path = e.Link.Item.Tag.ToString();
+                string formname = e.Link.Item.Caption.ToString();
+
+                Thread thread1 = new Thread(new ThreadStart(
+                            delegate
+                            {
+                                InsertOperateLog(formname);
+                            }
+                            ));
+                thread1.IsBackground = true;
+                thread1.Start();
+
+                Form form = null;
+                if (!String.IsNullOrEmpty(formname))
+                {
+                    switch (formname)
+                    {
+                        case "修改密码":
+                            form = new frmChangePassword();
+                            break;
+                        case "切换用户":
+                            frmLogin frm = new frmLogin();
+                            this.Hide();
+                            frm.Show();
+                            return;
+                        case "退出系统":
+                            Application.Exit();
+                            break;
+                        default:
+                            form = ReflectionHelper.CreateInstance<Form>(path, "WindowsForms");
+                            break;
+                    }
+                    Add_TabPage(form, e.Link.Item.Caption.ToString(), userMenu.Rows[0]["username"].ToString() + "," + userMenu.Rows[0]["rolename"].ToString());
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -254,6 +313,12 @@ namespace WindowsForms
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
+        {
+            NavBarControl navBar = sender as NavBarControl;
+            navBar.OptionsNavPane.NavPaneState = NavPaneState.Collapsed;
         }
     }
 }

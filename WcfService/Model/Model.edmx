@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WinformPlatformModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="deptno" />
+          </Key>
+          <Property Name="deptno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deptname" Type="nvarchar" MaxLength="20" />
+          <Property Name="remark" Type="nvarchar" MaxLength="100" />
+          <Property Name="createby" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="updateby" Type="nvarchar" MaxLength="20" />
+          <Property Name="updatetime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“WinformPlatform.dbo.loginlog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="loginlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="20" />
+          <Property Name="createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="menuinfo">
+          <Key>
+            <PropertyRef Name="menuid" />
+          </Key>
+          <Property Name="menuid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menuname" Type="nvarchar" MaxLength="20" />
+          <Property Name="path" Type="nvarchar" MaxLength="100" />
+          <Property Name="parentid" Type="int" />
+          <Property Name="sort" Type="int" />
+          <Property Name="createby" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="updateby" Type="nvarchar" MaxLength="20" />
+          <Property Name="updatetime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“WinformPlatform.dbo.operatelog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="operatelog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="20" />
+          <Property Name="ip" Type="nvarchar" MaxLength="20" />
+          <Property Name="computername" Type="nvarchar" MaxLength="30" />
+          <Property Name="formname" Type="nvarchar" MaxLength="20" />
+          <Property Name="createdate" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“WinformPlatform.dbo.record”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date" Type="nvarchar" MaxLength="10" />
+          <Property Name="Red_01" Type="nvarchar" MaxLength="2" />
+          <Property Name="Red_02" Type="nvarchar" MaxLength="2" />
+          <Property Name="Red_03" Type="nvarchar" MaxLength="2" />
+          <Property Name="Red_04" Type="nvarchar" MaxLength="2" />
+          <Property Name="Red_05" Type="nvarchar" MaxLength="2" />
+          <Property Name="Red_06" Type="nvarchar" MaxLength="2" />
+          <Property Name="Blue" Type="nvarchar" MaxLength="2" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6013: 表/视图“WinformPlatform.dbo.role_menu”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="role_menu">
+          <Property Name="roleid" Type="int" />
+          <Property Name="menuid" Type="int" />
+        </EntityType>-->
+        <EntityType Name="roleinfo">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="nvarchar" MaxLength="15" />
+          <Property Name="remark" Type="nvarchar" MaxLength="100" />
+          <Property Name="createby" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="updateby" Type="nvarchar" MaxLength="20" />
+          <Property Name="updatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysuser">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="realname" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="deptno" Type="int" />
+          <Property Name="roleid" Type="int" />
+          <Property Name="createtime" Type="datetime" />
+          <Property Name="createby" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="int" />
+          <Property Name="updateby" Type="nvarchar" MaxLength="20" />
+          <Property Name="updatetime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6013: 表/视图“WinformPlatform.dbo.sysversion”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="sysversion">
+          <Property Name="version" Type="nvarchar" MaxLength="10" />
+          <Property Name="creator" Type="nvarchar" MaxLength="10" />
+          <Property Name="updatetime" Type="datetime" />
+          <Property Name="active" Type="bit" />
+          <Property Name="remark" Type="nvarchar" MaxLength="100" />
+        </EntityType>-->
+        <!--生成过程中发现错误:
+错误 6004: 某个关系引用了表“WinformPlatform.dbo.role_menu”，但找不到该表。
+        <Association Name="FK__role_menu__menui__45F365D3" />-->
+        <!--生成过程中发现错误:
+错误 6004: 某个关系引用了表“WinformPlatform.dbo.role_menu”，但找不到该表。
+        <Association Name="FK__role_menu__rolei__44FF419A" />-->
+        <!--生成过程中发现错误:
+错误 6004: 某个关系引用了表“WinformPlatform.dbo.role_menu”，但找不到该表。
+        <Association Name="FK__role_menu__rolei__75A278F5" />-->
+        <Association Name="FK__sysuser__deptno__4222D4EF">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="sysuser" Type="Self.sysuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="deptno" />
+            </Principal>
+            <Dependent Role="sysuser">
+              <PropertyRef Name="deptno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sysuser__roleid__4316F928">
+          <End Role="roleinfo" Type="Self.roleinfo" Multiplicity="0..1" />
+          <End Role="sysuser" Type="Self.sysuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleinfo">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="sysuser">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WinformPlatformModelStoreContainer">
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menuinfo" EntityType="Self.menuinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roleinfo" EntityType="Self.roleinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysuser" EntityType="Self.sysuser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loginlog" EntityType="Self.loginlog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[loginlog].[id] AS [id], 
+[loginlog].[username] AS [username], 
+[loginlog].[createdate] AS [createdate]
+FROM [dbo].[loginlog] AS [loginlog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="operatelog" EntityType="Self.operatelog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[operatelog].[id] AS [id], 
+[operatelog].[username] AS [username], 
+[operatelog].[ip] AS [ip], 
+[operatelog].[computername] AS [computername], 
+[operatelog].[formname] AS [formname], 
+[operatelog].[createdate] AS [createdate]
+FROM [dbo].[operatelog] AS [operatelog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="record" EntityType="Self.record" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[record].[id] AS [id], 
+[record].[No] AS [No], 
+[record].[Date] AS [Date], 
+[record].[Red_01] AS [Red_01], 
+[record].[Red_02] AS [Red_02], 
+[record].[Red_03] AS [Red_03], 
+[record].[Red_04] AS [Red_04], 
+[record].[Red_05] AS [Red_05], 
+[record].[Red_06] AS [Red_06], 
+[record].[Blue] AS [Blue]
+FROM [dbo].[record] AS [record]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__sysuser__deptno__4222D4EF" Association="Self.FK__sysuser__deptno__4222D4EF">
+            <End Role="department" EntitySet="department" />
+            <End Role="sysuser" EntitySet="sysuser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sysuser__roleid__4316F928" Association="Self.FK__sysuser__roleid__4316F928">
+            <End Role="roleinfo" EntitySet="roleinfo" />
+            <End Role="sysuser" EntitySet="sysuser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WinformPlatformModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="deptno" />
+          </Key>
+          <Property Name="deptno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deptname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="createby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="updateby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sysuser" Relationship="Self.FK__sysuser__deptno__4222D4EF" FromRole="department" ToRole="sysuser" />
+        </EntityType>
+        <EntityType Name="menuinfo">
+          <Key>
+            <PropertyRef Name="menuid" />
+          </Key>
+          <Property Name="menuid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menuname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="createby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="updateby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="roleinfo">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="createby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="updateby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sysuser" Relationship="Self.FK__sysuser__roleid__4316F928" FromRole="roleinfo" ToRole="sysuser" />
+        </EntityType>
+        <EntityType Name="sysuser">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="realname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deptno" Type="Int32" />
+          <Property Name="roleid" Type="Int32" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <Property Name="createby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="updateby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="department" Relationship="Self.FK__sysuser__deptno__4222D4EF" FromRole="sysuser" ToRole="department" />
+          <NavigationProperty Name="roleinfo" Relationship="Self.FK__sysuser__roleid__4316F928" FromRole="sysuser" ToRole="roleinfo" />
+        </EntityType>
+        <EntityType Name="loginlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="operatelog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="computername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="formname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Red_01" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Red_02" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Red_03" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Red_04" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Red_05" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Red_06" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Blue" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__sysuser__deptno__4222D4EF">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="sysuser" Type="Self.sysuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="deptno" />
+            </Principal>
+            <Dependent Role="sysuser">
+              <PropertyRef Name="deptno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sysuser__roleid__4316F928">
+          <End Role="roleinfo" Type="Self.roleinfo" Multiplicity="0..1" />
+          <End Role="sysuser" Type="Self.sysuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleinfo">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="sysuser">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WinformPlatformEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="department" EntityType="Self.department" />
+          <EntitySet Name="menuinfo" EntityType="Self.menuinfo" />
+          <EntitySet Name="roleinfo" EntityType="Self.roleinfo" />
+          <EntitySet Name="sysuser" EntityType="Self.sysuser" />
+          <EntitySet Name="loginlog" EntityType="Self.loginlog" />
+          <EntitySet Name="operatelog" EntityType="Self.operatelog" />
+          <EntitySet Name="record" EntityType="Self.record" />
+          <AssociationSet Name="FK__sysuser__deptno__4222D4EF" Association="Self.FK__sysuser__deptno__4222D4EF">
+            <End Role="department" EntitySet="department" />
+            <End Role="sysuser" EntitySet="sysuser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sysuser__roleid__4316F928" Association="Self.FK__sysuser__roleid__4316F928">
+            <End Role="roleinfo" EntitySet="roleinfo" />
+            <End Role="sysuser" EntitySet="sysuser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WinformPlatformModelStoreContainer" CdmEntityContainer="WinformPlatformEntities">
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="WinformPlatformModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="deptno" ColumnName="deptno" />
+                <ScalarProperty Name="deptname" ColumnName="deptname" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="createby" ColumnName="createby" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="updateby" ColumnName="updateby" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menuinfo">
+            <EntityTypeMapping TypeName="WinformPlatformModel.menuinfo">
+              <MappingFragment StoreEntitySet="menuinfo">
+                <ScalarProperty Name="menuid" ColumnName="menuid" />
+                <ScalarProperty Name="menuname" ColumnName="menuname" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="createby" ColumnName="createby" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="updateby" ColumnName="updateby" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleinfo">
+            <EntityTypeMapping TypeName="WinformPlatformModel.roleinfo">
+              <MappingFragment StoreEntitySet="roleinfo">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="createby" ColumnName="createby" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="updateby" ColumnName="updateby" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysuser">
+            <EntityTypeMapping TypeName="WinformPlatformModel.sysuser">
+              <MappingFragment StoreEntitySet="sysuser">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="realname" ColumnName="realname" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="deptno" ColumnName="deptno" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+                <ScalarProperty Name="createby" ColumnName="createby" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="updateby" ColumnName="updateby" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loginlog">
+            <EntityTypeMapping TypeName="WinformPlatformModel.loginlog">
+              <MappingFragment StoreEntitySet="loginlog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="operatelog">
+            <EntityTypeMapping TypeName="WinformPlatformModel.operatelog">
+              <MappingFragment StoreEntitySet="operatelog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="computername" ColumnName="computername" />
+                <ScalarProperty Name="formname" ColumnName="formname" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="record">
+            <EntityTypeMapping TypeName="WinformPlatformModel.record">
+              <MappingFragment StoreEntitySet="record">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Red_01" ColumnName="Red_01" />
+                <ScalarProperty Name="Red_02" ColumnName="Red_02" />
+                <ScalarProperty Name="Red_03" ColumnName="Red_03" />
+                <ScalarProperty Name="Red_04" ColumnName="Red_04" />
+                <ScalarProperty Name="Red_05" ColumnName="Red_05" />
+                <ScalarProperty Name="Red_06" ColumnName="Red_06" />
+                <ScalarProperty Name="Blue" ColumnName="Blue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -133,6 +133,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Purchase\frmApply.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frmApply.Designer.cs">
+      <DependentUpon>frmApply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\frmApprove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frmApprove.Designer.cs">
+      <DependentUpon>frmApprove.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManager\frmAddDept.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +221,12 @@
     </Compile>
     <Compile Include="Util\MD5Util.cs" />
     <Compile Include="Util\ReflectionHelper.cs" />
+    <EmbeddedResource Include="Purchase\frmApply.resx">
+      <DependentUpon>frmApply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frmApprove.resx">
+      <DependentUpon>frmApprove.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserManager\frmAddDept.resx">
       <DependentUpon>frmAddDept.cs</DependentUpon>
     </EmbeddedResource>

@@ -17,7 +17,7 @@ namespace WindowsForms.Util
         /// <param name="Path"></param>
         /// <param name="sheet"></param>
         /// <returns></returns>
-        public static DataSet ExcelToDS(string Path, string sheet)
+        public static DataSet OleDbExcelToDS(string Path, string sheet)
         {
             string strConn = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + Path + ";" + "Extended Properties=Excel 8.0;";
             OleDbConnection conn = new OleDbConnection(strConn);
@@ -37,7 +37,7 @@ namespace WindowsForms.Util
         /// </summary>
         /// <param name="filePath">Excel文件路径</param>
         /// <returns></returns>
-        public static DataTable ExcelToDataTable(string filePath)
+        public static DataTable NPOI_ExcelToDataTable(string filePath)
         {
             var dt = new DataTable();
             using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
@@ -107,7 +107,7 @@ namespace WindowsForms.Util
         /// <param name="filePath">Excel文件路径</param>
         /// <param name="strMsg"></param>
         /// <returns></returns>
-        public static DataSet ExcelToDataSet(string filePath, out string strMsg)
+        public static DataSet NPOI_ExcelToDataSet(string filePath, out string strMsg)
         {
             strMsg = "";
             DataSet ds = new DataSet();

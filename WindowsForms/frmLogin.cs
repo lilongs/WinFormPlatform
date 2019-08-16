@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.ServiceReference1;
 using WindowsForms.ServiceReference3;
+using WindowsForms.UserManager;
 
 namespace WindowsForms
 {
@@ -25,7 +26,10 @@ namespace WindowsForms
         MenuManagerInterfaceClient client2 = new MenuManagerInterfaceClient();
         DataTable dtUserMenu = new DataTable();
         DataTable dtAllGroup = new DataTable();
-        
+        public Dictionary<int, Dictionary<string, MenuInfo>> Menus = new Dictionary<int, Dictionary<string, MenuInfo>>();//组名，菜单名，窗体路径信息和菜单图片路径
+        public Dictionary<int, string> Groups = new Dictionary<int, string>();//组名
+
+
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -45,8 +49,9 @@ namespace WindowsForms
                 frmMain main = new frmMain();
                 this.Invoke(new MethodInvoker(delegate ()
                 {
+                    main.Menus = Menus;
+                    main.Groups = Groups;
                     main.userMenu = dtUserMenu;
-                    main.allGroup = dtAllGroup;
                 }));
                 main.Show();
                 this.Hide();
@@ -61,8 +66,63 @@ namespace WindowsForms
             dtUserMenu = client.GetUserMenuInfo(txtUsername.Text.Trim());
             dtAllGroup = client2.GetAllGroupInfo();
 
-            
+           InitMenuGroups();
         }
+        private void InitMenuGroups()
+        {
+            //加载固定的系统操作菜单            
+            Dictionary<string, MenuInfo> temp = new Dictionary<string, MenuInfo>();
+
+            Groups.Add(-1, "系统设置");
+            MenuInfo menuInfo;
+            temp.Add("修改密码", menuInfo = new MenuInfo("", "change"));
+            temp.Add("切换用户", menuInfo = new MenuInfo("", "user"));
+            temp.Add("退出系统", menuInfo = new MenuInfo("", "quit"));
+            Menus.Add(-1, temp);
+            //装载组别信息
+            foreach (DataRow dr in dtAllGroup.Rows)
+            {
+                int parentid = String.IsNullOrEmpty(dr["parentid"].ToString()) ? 0 : Convert.ToInt32(dr["parentid"]);
+                int GroupId = String.IsNullOrEmpty(dr["menuid"].ToString()) ? 0 : Convert.ToInt32(dr["menuid"]);
+                string MenuName = dr["menuname"].ToString();
+                if (parentid == 0)
+                {
+                    if (!Groups.ContainsKey(GroupId))
+                    {
+                        Groups.Add(GroupId, MenuName);
+                    }
+                }
+            }
+            //装载子级菜单
+            foreach (DataRow dr in dtUserMenu.Rows)
+            {
+                Dictionary<string, MenuInfo> menuItem = new Dictionary<string, MenuInfo>();
+                MenuInfo menuInfos;
+                int parentid = String.IsNullOrEmpty(dr["parentid"].ToString()) ? 0 : Convert.ToInt32(dr["parentid"]);
+                int GroupId = String.IsNullOrEmpty(dr["menuid"].ToString()) ? 0 : Convert.ToInt32(dr["menuid"]);
+                string MenuName = dr["menuname"].ToString();
+                string path = dr["path"].ToString();
+                string image_path = dr["image_path"].ToString();
+
+                if (parentid != 0)
+                {
+                    if (!Menus.ContainsKey(parentid))
+                    {
+                        menuItem.Add(MenuName, menuInfos = new MenuInfo(path, image_path));
+                        Menus.Add(parentid, menuItem);
+                    }
+                    else
+                    {
+                        menuItem = Menus[parentid];
+                        if (!menuItem.ContainsKey(MenuName))
+                        {
+                            menuItem.Add(MenuName, menuInfos = new MenuInfo(path, image_path));
+                        }
+                    }
+                }
+            }
+        }
+
 
         private bool CheckInput()
         {

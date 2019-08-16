@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUser));
             this.txtusername = new DevExpress.XtraEditors.TextEdit();
             this.btnsure = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -60,6 +61,7 @@
             // 
             // btnsure
             // 
+            this.btnsure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnsure.ImageOptions.Image")));
             this.btnsure.Location = new System.Drawing.Point(82, 236);
             this.btnsure.Name = "btnsure";
             this.btnsure.Size = new System.Drawing.Size(77, 34);
@@ -77,6 +79,7 @@
             // 
             // btncancel
             // 
+            this.btncancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btncancel.ImageOptions.Image")));
             this.btncancel.Location = new System.Drawing.Point(252, 236);
             this.btncancel.Name = "btncancel";
             this.btncancel.Size = new System.Drawing.Size(77, 34);

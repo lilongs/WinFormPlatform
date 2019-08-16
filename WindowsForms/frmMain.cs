@@ -17,9 +17,12 @@ using WindowsForms.UserManager;
 using WindowsForms.ServiceReference1;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraBars.Docking;
+using WindowsForms.Properties;
 
 namespace WindowsForms
 {
+   
+
     public partial class frmMain : Form
     {
         public frmMain()
@@ -29,11 +32,14 @@ namespace WindowsForms
         PermissionInterfaceClient client = new PermissionInterfaceClient();
         public DataTable allGroup = new DataTable();
         public DataTable userMenu = new DataTable();//用户菜单信息
-        Dictionary<int, string> Groups = new Dictionary<int, string>();//菜单组别信息
-        Dictionary<int, Dictionary<string, string>> Menus = new Dictionary<int, Dictionary<string, string>>();//组别，菜单名，窗体路径信息
+
+        public Dictionary<int, string> Groups = new Dictionary<int, string>();//菜单组别信息
+        public Dictionary<int, Dictionary<string, MenuInfo>> Menus = new Dictionary<int, Dictionary<string, MenuInfo>>();//组名，菜单名，窗体路径信息和菜单图片路径
+
         public string ip = string.Empty;
         public string computername = string.Empty;
 
+        
         private void frmMain_Load(object sender, EventArgs e)
         {
             InitSystem();
@@ -43,7 +49,6 @@ namespace WindowsForms
         {
             getClientInfo();
             SetUserInfo();
-            getMenuGroups();
             InitMenu();
         }
 
@@ -65,57 +70,6 @@ namespace WindowsForms
             barStaticItem4.Caption = String.Join(",",arr);
         }
 
-        private void getMenuGroups()
-        {
-            //加载固定的系统操作菜单
-            Dictionary<string, string> temp = new Dictionary<string, string>();
-            Groups.Add(-1, "系统设置");
-            temp.Add("修改密码", "");
-            temp.Add("切换用户", "");
-            temp.Add("退出系统", "");
-            Menus.Add(-1, temp);
-            //装载组别信息
-            foreach (DataRow dr in allGroup.Rows)
-            {
-                int parentid = String.IsNullOrEmpty(dr["parentid"].ToString()) ? 0 : Convert.ToInt32(dr["parentid"]);
-                int GroupId = String.IsNullOrEmpty(dr["menuid"].ToString()) ? 0 : Convert.ToInt32(dr["menuid"]);
-                string MenuName = dr["menuname"].ToString();
-                if (parentid == 0)
-                {
-                    if (!Groups.ContainsKey(GroupId))
-                    {
-                        Groups.Add(GroupId, MenuName);
-                    }
-                }
-            }
-            //装载子级菜单
-            foreach (DataRow dr in userMenu.Rows)
-            {
-                Dictionary<string, string> menuItem = new Dictionary<string, string>();
-                int parentid = String.IsNullOrEmpty(dr["parentid"].ToString()) ? 0 : Convert.ToInt32(dr["parentid"]);
-                int GroupId = String.IsNullOrEmpty(dr["menuid"].ToString()) ? 0 : Convert.ToInt32(dr["menuid"]);
-                string MenuName = dr["menuname"].ToString();
-                string path = dr["path"].ToString();
-                
-                if(parentid!=0)
-                {
-                    if (!Menus.ContainsKey(parentid))
-                    {
-                        menuItem.Add(MenuName, path);
-                        Menus.Add(parentid, menuItem);
-                    }
-                    else
-                    {
-                        menuItem = Menus[parentid];
-                        if (!menuItem.ContainsKey(MenuName))
-                        {
-                            menuItem.Add(MenuName, path);
-                        }
-                    }
-                }
-            }
-        }
-
         private void InitMenu()
         {
             foreach(var item in Menus)
@@ -134,14 +88,16 @@ namespace WindowsForms
                     BarButtonItem menuItem = new BarButtonItem();
                     menuItem.Name = menu.Key;
                     menuItem.Caption = menu.Key;
-                    menuItem.Tag = menu.Value;
+                    menuItem.Tag = menu.Value.path;
+                    menuItem.ImageOptions.Image = (Image)Resources.ResourceManager.GetObject(menu.Value.image_path);
                     GroupItem.AddItem(menuItem);
                     menuItem.ItemClick += MenuItem_ItemClick;
 
                     NavBarItem navBarItem = new NavBarItem();
                     navBarItem.Name = menu.Key;
                     navBarItem.Caption = menu.Key;
-                    navBarItem.Tag = menu.Value;
+                    navBarItem.Tag = menu.Value.path;
+                    navBarItem.SmallImage=(Image)Resources.ResourceManager.GetObject(menu.Value.image_path);
                     navBarGroup.ItemLinks.Add(navBarItem);
                     navBarItem.LinkClicked += BarItem_ItemClick;
                 }                
@@ -179,7 +135,7 @@ namespace WindowsForms
                             return;
                         case "退出系统":
                             Application.Exit();
-                            break;
+                            return;
                         default:
                             form = ReflectionHelper.CreateInstance<Form>(path, "WindowsForms");
                             break;
@@ -224,7 +180,7 @@ namespace WindowsForms
                             return;
                         case "退出系统":
                             Application.Exit();
-                            break;
+                            return;
                         default:
                             form=ReflectionHelper.CreateInstance<Form>(path, "WindowsForms");
                             break;

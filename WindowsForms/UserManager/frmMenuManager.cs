@@ -34,11 +34,12 @@ namespace WindowsForms.UserManager
             gdcInfo.ParentFieldName = "parentid";
             gdcInfo.Columns[0].Caption = "菜单";
             gdcInfo.Columns[1].Caption = "路径";
-            gdcInfo.Columns[2].Caption = "父窗体";
-            gdcInfo.Columns[3].Caption = "创建人";
-            gdcInfo.Columns[4].Caption = "创建时间";
-            gdcInfo.Columns[5].Caption = "更新人";
-            gdcInfo.Columns[6].Caption = "更新时间";
+            gdcInfo.Columns[2].Caption = "菜单图标";
+            gdcInfo.Columns[3].Caption = "父窗体";
+            gdcInfo.Columns[4].Caption = "创建人";
+            gdcInfo.Columns[5].Caption = "创建时间";
+            gdcInfo.Columns[6].Caption = "更新人";
+            gdcInfo.Columns[7].Caption = "更新时间";
             gdcInfo.OptionsView.ShowCheckBoxes = true;
             ExpandTree();
         }
@@ -135,8 +136,18 @@ namespace WindowsForms.UserManager
         public int menuid { get; set; }
         public string menuname { get; set; }
         public string path { get; set; }
+        public string image_path { get; set; }
         public int parentid { get; set; }
         public int sort { get; set; }
 
+        public MenuInfo()
+        {
+
+        }
+            public MenuInfo(string Path,string ImagePath)
+        {
+            this.path = Path;
+            this.image_path = ImagePath;
+        }
     }
 }

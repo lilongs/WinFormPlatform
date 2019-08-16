@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddMenu));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtmenuname = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -61,6 +62,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.Location = new System.Drawing.Point(290, 221);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 36);
@@ -70,6 +72,7 @@
             // 
             // btnSure
             // 
+            this.btnSure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSure.ImageOptions.Image")));
             this.btnSure.Location = new System.Drawing.Point(121, 221);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(80, 36);

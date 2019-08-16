@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChangePassword));
             this.txtOldPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnSure = new DevExpress.XtraEditors.SimpleButton();
@@ -61,9 +62,10 @@
             // 
             // btnSure
             // 
-            this.btnSure.Location = new System.Drawing.Point(45, 161);
+            this.btnSure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSure.ImageOptions.Image")));
+            this.btnSure.Location = new System.Drawing.Point(141, 149);
             this.btnSure.Name = "btnSure";
-            this.btnSure.Size = new System.Drawing.Size(75, 23);
+            this.btnSure.Size = new System.Drawing.Size(103, 44);
             this.btnSure.TabIndex = 3;
             this.btnSure.Text = "确定修改";
             this.btnSure.Click += new System.EventHandler(this.btnSure_Click);

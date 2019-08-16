@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuManager));
             this.btnUpdateMenu = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddMenu = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -46,18 +47,20 @@
             // 
             // btnUpdateMenu
             // 
+            this.btnUpdateMenu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateMenu.ImageOptions.Image")));
             this.btnUpdateMenu.Location = new System.Drawing.Point(302, 47);
             this.btnUpdateMenu.Name = "btnUpdateMenu";
-            this.btnUpdateMenu.Size = new System.Drawing.Size(79, 40);
+            this.btnUpdateMenu.Size = new System.Drawing.Size(109, 40);
             this.btnUpdateMenu.TabIndex = 3;
             this.btnUpdateMenu.Text = "更新菜单";
             this.btnUpdateMenu.Click += new System.EventHandler(this.btnUpdateMenu_Click);
             // 
             // btnAddMenu
             // 
+            this.btnAddMenu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddMenu.ImageOptions.Image")));
             this.btnAddMenu.Location = new System.Drawing.Point(120, 47);
             this.btnAddMenu.Name = "btnAddMenu";
-            this.btnAddMenu.Size = new System.Drawing.Size(79, 40);
+            this.btnAddMenu.Size = new System.Drawing.Size(109, 40);
             this.btnAddMenu.TabIndex = 3;
             this.btnAddMenu.Text = "添加菜单";
             this.btnAddMenu.Click += new System.EventHandler(this.btnAddMenu_Click);
@@ -75,6 +78,7 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
             this.btnSearch.Location = new System.Drawing.Point(355, 43);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);

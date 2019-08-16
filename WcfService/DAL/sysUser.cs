@@ -89,7 +89,7 @@ namespace WcfService.DAL
 
         public DataTable getUserMenuInfo(string username)
         {
-            string sql = @"select a.username,rolename,c.menuid,menuname,parentid,path 
+            string sql = @"select a.username,rolename,c.menuid,menuname,parentid,path,image_path 
                         from sysuser a
                         left join user_role e on a.username=e.username
                         left join roleinfo b on e.roleid = b.roleid

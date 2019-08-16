@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserManager));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtusername = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnStopUser = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUpdateUser = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddUser = new DevExpress.XtraEditors.SimpleButton();
             this.gdcInfo = new DevExpress.XtraGrid.GridControl();
             this.gdvInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -48,7 +50,6 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.btnUpdateUser = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtusername.Properties)).BeginInit();
@@ -73,9 +74,10 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
             this.btnSearch.Location = new System.Drawing.Point(355, 43);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(65, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "查询";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -109,18 +111,30 @@
             // 
             // btnStopUser
             // 
+            this.btnStopUser.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStopUser.ImageOptions.Image")));
             this.btnStopUser.Location = new System.Drawing.Point(434, 47);
             this.btnStopUser.Name = "btnStopUser";
-            this.btnStopUser.Size = new System.Drawing.Size(79, 40);
+            this.btnStopUser.Size = new System.Drawing.Size(104, 40);
             this.btnStopUser.TabIndex = 3;
             this.btnStopUser.Text = "禁用用户";
             this.btnStopUser.Click += new System.EventHandler(this.btnStopUser_Click);
             // 
+            // btnUpdateUser
+            // 
+            this.btnUpdateUser.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateUser.ImageOptions.Image")));
+            this.btnUpdateUser.Location = new System.Drawing.Point(279, 47);
+            this.btnUpdateUser.Name = "btnUpdateUser";
+            this.btnUpdateUser.Size = new System.Drawing.Size(104, 40);
+            this.btnUpdateUser.TabIndex = 3;
+            this.btnUpdateUser.Text = "修改用户";
+            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
+            // 
             // btnAddUser
             // 
+            this.btnAddUser.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.ImageOptions.Image")));
             this.btnAddUser.Location = new System.Drawing.Point(120, 47);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(79, 40);
+            this.btnAddUser.Size = new System.Drawing.Size(104, 40);
             this.btnAddUser.TabIndex = 3;
             this.btnAddUser.Text = "添加用户";
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -289,15 +303,6 @@
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            // 
-            // btnUpdateUser
-            // 
-            this.btnUpdateUser.Location = new System.Drawing.Point(279, 47);
-            this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(79, 40);
-            this.btnUpdateUser.TabIndex = 3;
-            this.btnUpdateUser.Text = "修改用户";
-            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
             // 
             // frmUserManager
             // 

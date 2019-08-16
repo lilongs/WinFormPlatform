@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddRole));
             this.txtremark = new System.Windows.Forms.TextBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -70,6 +71,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.Location = new System.Drawing.Point(371, 196);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 36);
@@ -79,6 +81,7 @@
             // 
             // btnSure
             // 
+            this.btnSure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSure.ImageOptions.Image")));
             this.btnSure.Location = new System.Drawing.Point(139, 196);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(80, 36);

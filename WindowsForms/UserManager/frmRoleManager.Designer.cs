@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRoleManager));
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -149,18 +150,20 @@
             // 
             // btnUpdateRole
             // 
+            this.btnUpdateRole.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateRole.ImageOptions.Image")));
             this.btnUpdateRole.Location = new System.Drawing.Point(302, 47);
             this.btnUpdateRole.Name = "btnUpdateRole";
-            this.btnUpdateRole.Size = new System.Drawing.Size(79, 40);
+            this.btnUpdateRole.Size = new System.Drawing.Size(100, 40);
             this.btnUpdateRole.TabIndex = 3;
             this.btnUpdateRole.Text = "更新角色";
             this.btnUpdateRole.Click += new System.EventHandler(this.btnUpdateRole_Click);
             // 
             // btnAddRole
             // 
+            this.btnAddRole.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRole.ImageOptions.Image")));
             this.btnAddRole.Location = new System.Drawing.Point(120, 47);
             this.btnAddRole.Name = "btnAddRole";
-            this.btnAddRole.Size = new System.Drawing.Size(79, 40);
+            this.btnAddRole.Size = new System.Drawing.Size(100, 40);
             this.btnAddRole.TabIndex = 3;
             this.btnAddRole.Text = "添加角色";
             this.btnAddRole.Click += new System.EventHandler(this.btnAddRole_Click);
@@ -178,9 +181,10 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
             this.btnSearch.Location = new System.Drawing.Point(355, 43);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(69, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "查询";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);

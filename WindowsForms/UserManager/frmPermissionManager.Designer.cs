@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPermissionManager));
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -97,9 +98,10 @@
             // 
             // btnsure
             // 
-            this.btnsure.Location = new System.Drawing.Point(648, 24);
+            this.btnsure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnsure.ImageOptions.Image")));
+            this.btnsure.Location = new System.Drawing.Point(648, 28);
             this.btnsure.Name = "btnsure";
-            this.btnsure.Size = new System.Drawing.Size(80, 41);
+            this.btnsure.Size = new System.Drawing.Size(106, 41);
             this.btnsure.TabIndex = 0;
             this.btnsure.Text = "确认修改";
             this.btnsure.Click += new System.EventHandler(this.btnsure_Click);

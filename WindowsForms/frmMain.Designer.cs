@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -40,25 +41,27 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
+            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.tabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
-            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.hideContainerLeft = new DevExpress.XtraBars.Docking.AutoHideContainer();
+            this.xtraUserControl1 = new DevExpress.XtraEditors.XtraUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
+            this.hideContainerLeft.SuspendLayout();
+            this.dockPanel1.SuspendLayout();
+            this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
-            this.dockPanel1.SuspendLayout();
-            this.dockPanel1_Container.SuspendLayout();
-            this.hideContainerLeft.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // barManager1
@@ -81,7 +84,7 @@
             this.barStaticItem3,
             this.barStaticItem4});
             this.barManager1.MainMenu = this.bar1;
-            this.barManager1.MaxItemId = 11;
+            this.barManager1.MaxItemId = 13;
             this.barManager1.StatusBar = this.bar2;
             // 
             // bar1
@@ -92,6 +95,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.FloatSize = new System.Drawing.Size(0, 20);
             this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.MinHeight = 30;
             this.bar1.OptionsBar.MultiLine = true;
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Main menu";
@@ -145,7 +149,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1328, 20);
+            this.barDockControlTop.Size = new System.Drawing.Size(1328, 30);
             // 
             // barDockControlBottom
             // 
@@ -159,69 +163,24 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 617);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 607);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1328, 20);
+            this.barDockControlRight.Location = new System.Drawing.Point(1328, 30);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 617);
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Id = 8;
-            this.barButtonItem1.Name = "barButtonItem1";
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Id = 9;
-            this.barButtonItem2.Name = "barButtonItem2";
-            // 
-            // barButtonItem3
-            // 
-            this.barButtonItem3.Id = 10;
-            this.barButtonItem3.Name = "barButtonItem3";
-            // 
-            // navBarControl1
-            // 
-            this.navBarControl1.ActiveGroup = null;
-            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navBarControl1.Location = new System.Drawing.Point(0, 0);
-            this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 191;
-            this.navBarControl1.Size = new System.Drawing.Size(191, 590);
-            this.navBarControl1.TabIndex = 0;
-            this.navBarControl1.Text = "navBarControl1";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
-            this.tabControl1.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Always;
-            this.tabControl1.Location = new System.Drawing.Point(20, 20);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.tabControl1.Size = new System.Drawing.Size(1308, 617);
-            this.tabControl1.TabIndex = 14;
-            this.tabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1});
-            this.tabControl1.CloseButtonClick += new System.EventHandler(this.tabControl1_CloseButtonClick);
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1302, 588);
-            this.xtraTabPage1.Text = "首页";
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 607);
             // 
             // dockManager1
             // 
-            this.dockManager1.AutoHiddenPanelShowMode = DevExpress.XtraBars.Docking.AutoHiddenPanelShowMode.MouseClick;
             this.dockManager1.AutoHideContainers.AddRange(new DevExpress.XtraBars.Docking.AutoHideContainer[] {
             this.hideContainerLeft});
+            this.dockManager1.AutoHideSpeed = 10;
+            this.dockManager1.DockingOptions.HideImmediatelyOnAutoHide = true;
             this.dockManager1.Form = this;
             this.dockManager1.MenuManager = this.barManager1;
             this.dockManager1.TopZIndexControls.AddRange(new string[] {
@@ -235,6 +194,15 @@
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane",
             "DevExpress.XtraBars.TabFormControl"});
+            // 
+            // hideContainerLeft
+            // 
+            this.hideContainerLeft.BackColor = System.Drawing.SystemColors.Control;
+            this.hideContainerLeft.Controls.Add(this.dockPanel1);
+            this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.hideContainerLeft.Location = new System.Drawing.Point(0, 30);
+            this.hideContainerLeft.Name = "hideContainerLeft";
+            this.hideContainerLeft.Size = new System.Drawing.Size(20, 607);
             // 
             // dockPanel1
             // 
@@ -266,14 +234,63 @@
             this.dockPanel1_Container.Size = new System.Drawing.Size(191, 590);
             this.dockPanel1_Container.TabIndex = 0;
             // 
-            // hideContainerLeft
+            // navBarControl1
             // 
-            this.hideContainerLeft.BackColor = System.Drawing.SystemColors.Control;
-            this.hideContainerLeft.Controls.Add(this.dockPanel1);
-            this.hideContainerLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.hideContainerLeft.Location = new System.Drawing.Point(0, 20);
-            this.hideContainerLeft.Name = "hideContainerLeft";
-            this.hideContainerLeft.Size = new System.Drawing.Size(20, 617);
+            this.navBarControl1.ActiveGroup = null;
+            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navBarControl1.Location = new System.Drawing.Point(0, 0);
+            this.navBarControl1.Name = "navBarControl1";
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 191;
+            this.navBarControl1.Size = new System.Drawing.Size(191, 590);
+            this.navBarControl1.TabIndex = 0;
+            this.navBarControl1.Text = "navBarControl1";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Id = 8;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Id = 9;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Id = 10;
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.Close;
+            this.tabControl1.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Always;
+            this.tabControl1.Location = new System.Drawing.Point(20, 30);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.PageImagePosition = DevExpress.XtraTab.TabPageImagePosition.None;
+            this.tabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.tabControl1.Size = new System.Drawing.Size(1308, 607);
+            this.tabControl1.TabIndex = 14;
+            this.tabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1});
+            this.tabControl1.CloseButtonClick += new System.EventHandler(this.tabControl1_CloseButtonClick);
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.xtraUserControl1);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(1302, 578);
+            this.xtraTabPage1.Text = "首页";
+            // 
+            // xtraUserControl1
+            // 
+            this.xtraUserControl1.BackgroundImage = global::WindowsForms.Properties.Resources.bg;
+            this.xtraUserControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.xtraUserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraUserControl1.Name = "xtraUserControl1";
+            this.xtraUserControl1.Size = new System.Drawing.Size(1302, 578);
+            this.xtraUserControl1.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -295,13 +312,14 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
+            this.hideContainerLeft.ResumeLayout(false);
+            this.dockPanel1.ResumeLayout(false);
+            this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
-            this.dockPanel1.ResumeLayout(false);
-            this.dockPanel1_Container.ResumeLayout(false);
-            this.hideContainerLeft.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +349,6 @@
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
         private DevExpress.XtraBars.Docking.AutoHideContainer hideContainerLeft;
+        private DevExpress.XtraEditors.XtraUserControl xtraUserControl1;
     }
 }

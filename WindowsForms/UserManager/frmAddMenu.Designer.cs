@@ -40,6 +40,8 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtsort = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.combImage_path = new System.Windows.Forms.ComboBox();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtmenuname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsort.Properties)).BeginInit();
@@ -63,7 +65,7 @@
             // btnCancel
             // 
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(290, 221);
+            this.btnCancel.Location = new System.Drawing.Point(290, 229);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 36);
             this.btnCancel.TabIndex = 6;
@@ -73,7 +75,7 @@
             // btnSure
             // 
             this.btnSure.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSure.ImageOptions.Image")));
-            this.btnSure.Location = new System.Drawing.Point(121, 221);
+            this.btnSure.Location = new System.Drawing.Point(121, 229);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(80, 36);
             this.btnSure.TabIndex = 7;
@@ -136,11 +138,35 @@
             this.labelControl2.TabIndex = 18;
             this.labelControl2.Text = "添加根节点菜单，根菜单留空即可！";
             // 
+            // combImage_path
+            // 
+            this.combImage_path.FormattingEnabled = true;
+            this.combImage_path.Items.AddRange(new object[] {
+            "user",
+            "premissions",
+            "menu",
+            "dept",
+            "role"});
+            this.combImage_path.Location = new System.Drawing.Point(121, 192);
+            this.combImage_path.Name = "combImage_path";
+            this.combImage_path.Size = new System.Drawing.Size(249, 20);
+            this.combImage_path.TabIndex = 20;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(55, 193);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(60, 14);
+            this.labelControl6.TabIndex = 19;
+            this.labelControl6.Text = "菜单图片：";
+            // 
             // frmAddMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 285);
+            this.Controls.Add(this.combImage_path);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.txtsort);
@@ -176,5 +202,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit txtsort;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.ComboBox combImage_path;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }

@@ -42,27 +42,29 @@ namespace WcfService.DAL
 
         public DataTable GetAllGroupInfo()
         {
-            string sql = "select menuid,parentid,menuname from menuinfo where parentid=0";
+            string sql = "select menuid,parentid,menuname from menuinfo where parentid=0 order by sort";
             return sqlconn.Query(sql).Tables[0];
         }
 
-        public bool InsertMenuInfo(string menuname,string path,int parentid,int sort,string createby)
+        public bool InsertMenuInfo(string menuname,string path,int parentid,int sort,string createby, string ImagePath)
         {
-            string sql = "insert into menuinfo (menuname,path,parentid,sort,createby,createtime) values(@menuname,@path,@parentid,@sort,@createby,getdate())";
+            string sql = "insert into menuinfo (menuname,path,parentid,sort,createby,createtime,image_path) values(@menuname,@path,@parentid,@sort,@createby,getdate(),@image_path)";
             SqlParameter[] param = new SqlParameter[]
             {
                 new SqlParameter("@menuname",menuname),
                 new SqlParameter("@path",path),
                 new SqlParameter("@parentid",parentid),
                 new SqlParameter("@sort",sort),
-                new SqlParameter("@createby",createby)
+                new SqlParameter("@createby",createby),
+                new SqlParameter("@image_path",ImagePath)
             };
             return sqlconn.ExecuteSql(sql,param) > 0 ? true : false;
         }
 
-        public bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby)
+        public bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby, string ImagePath)
         {
-            string sql = "update menuinfo set menuname='"+menuname+"',path='"+path+"',parentid='"+parentid+"',sort='"+sort+"',updateby='"+updateby+"',updatetime=getdate() where menuid="+menuid+" ";
+            string sql = "update menuinfo set menuname='"+menuname+"',path='"+path+"',parentid='"+parentid+"',sort='"+sort+"',updateby='"+updateby+"'," +
+                "updatetime=getdate(),image_path='"+ImagePath+"' where menuid="+menuid+" ";
             return sqlconn.ExecuteSql(sql) > 0 ? true : false;
         }
 

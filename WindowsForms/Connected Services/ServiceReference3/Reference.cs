@@ -34,16 +34,16 @@ namespace WindowsForms.ServiceReference3 {
         System.Threading.Tasks.Task<System.Data.DataTable> GetAllGroupInfoAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenuManagerInterface/InsertMenuInfo", ReplyAction="http://tempuri.org/IMenuManagerInterface/InsertMenuInfoResponse")]
-        bool InsertMenuInfo(string menuname, string path, int parentid, int sort, string createby);
+        bool InsertMenuInfo(string menuname, string path, int parentid, int sort, string createby, string ImagePath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenuManagerInterface/InsertMenuInfo", ReplyAction="http://tempuri.org/IMenuManagerInterface/InsertMenuInfoResponse")]
-        System.Threading.Tasks.Task<bool> InsertMenuInfoAsync(string menuname, string path, int parentid, int sort, string createby);
+        System.Threading.Tasks.Task<bool> InsertMenuInfoAsync(string menuname, string path, int parentid, int sort, string createby, string ImagePath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenuManagerInterface/UpdateMenuInfo", ReplyAction="http://tempuri.org/IMenuManagerInterface/UpdateMenuInfoResponse")]
-        bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby);
+        bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby, string ImagePath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenuManagerInterface/UpdateMenuInfo", ReplyAction="http://tempuri.org/IMenuManagerInterface/UpdateMenuInfoResponse")]
-        System.Threading.Tasks.Task<bool> UpdateMenuInfoAsync(int menuid, string menuname, string path, int parentid, int sort, string updateby);
+        System.Threading.Tasks.Task<bool> UpdateMenuInfoAsync(int menuid, string menuname, string path, int parentid, int sort, string updateby, string ImagePath);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,20 +97,20 @@ namespace WindowsForms.ServiceReference3 {
             return base.Channel.GetAllGroupInfoAsync();
         }
         
-        public bool InsertMenuInfo(string menuname, string path, int parentid, int sort, string createby) {
-            return base.Channel.InsertMenuInfo(menuname, path, parentid, sort, createby);
+        public bool InsertMenuInfo(string menuname, string path, int parentid, int sort, string createby, string ImagePath) {
+            return base.Channel.InsertMenuInfo(menuname, path, parentid, sort, createby, ImagePath);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertMenuInfoAsync(string menuname, string path, int parentid, int sort, string createby) {
-            return base.Channel.InsertMenuInfoAsync(menuname, path, parentid, sort, createby);
+        public System.Threading.Tasks.Task<bool> InsertMenuInfoAsync(string menuname, string path, int parentid, int sort, string createby, string ImagePath) {
+            return base.Channel.InsertMenuInfoAsync(menuname, path, parentid, sort, createby, ImagePath);
         }
         
-        public bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby) {
-            return base.Channel.UpdateMenuInfo(menuid, menuname, path, parentid, sort, updateby);
+        public bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby, string ImagePath) {
+            return base.Channel.UpdateMenuInfo(menuid, menuname, path, parentid, sort, updateby, ImagePath);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateMenuInfoAsync(int menuid, string menuname, string path, int parentid, int sort, string updateby) {
-            return base.Channel.UpdateMenuInfoAsync(menuid, menuname, path, parentid, sort, updateby);
+        public System.Threading.Tasks.Task<bool> UpdateMenuInfoAsync(int menuid, string menuname, string path, int parentid, int sort, string updateby, string ImagePath) {
+            return base.Channel.UpdateMenuInfoAsync(menuid, menuname, path, parentid, sort, updateby, ImagePath);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace WindowsForms.UserManager
             InitializeComponent();
         }
         MenuManagerInterfaceClient client = new MenuManagerInterfaceClient();
-        public List<MenuInfo> lstChecked = new List<MenuInfo>();
+        public List<MenuInfo> lstChecked ;
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -75,6 +75,7 @@ namespace WindowsForms.UserManager
             {
                 return;//递归终止
             }
+            
             foreach (TreeListNode node in parentNode.Nodes)
             {
                 if (node.CheckState == CheckState.Checked)
@@ -88,6 +89,7 @@ namespace WindowsForms.UserManager
                         menuInfo.parentid = Convert.ToInt32(drv["parentid"]);
                         menuInfo.sort = Convert.ToInt32(drv["sort"]);
                         menuInfo.path = drv["path"].ToString();
+                        menuInfo.image_path = drv["image_path"].ToString();
                         lstChecked.Add(menuInfo);
                     }
 
@@ -100,8 +102,26 @@ namespace WindowsForms.UserManager
         {
             if (gdcInfo.Nodes.Count > 0)
             {
+                lstChecked = new List<MenuInfo>();
                 foreach (TreeListNode root in gdcInfo.Nodes)
                 {
+                    //获取根节点信息
+                    if (root.CheckState == CheckState.Checked)
+                    {
+                        DataRowView drv = gdcInfo.GetDataRecordByNode(root) as DataRowView;
+                        MenuInfo menuInfo = new MenuInfo();
+                        if (drv != null)
+                        {
+                            menuInfo.menuid = Convert.ToInt32(drv["menuid"]);
+                            menuInfo.menuname = drv["menuname"].ToString();
+                            menuInfo.parentid = Convert.ToInt32(drv["parentid"]);
+                            menuInfo.sort = Convert.ToInt32(drv["sort"]);
+                            menuInfo.path = drv["path"].ToString();
+                            menuInfo.image_path = drv["image_path"].ToString();
+                            lstChecked.Add(menuInfo);
+                        }
+
+                    }
                     GetCheckedID(root);
                 }
             }
@@ -122,6 +142,7 @@ namespace WindowsForms.UserManager
             frm.parentid= lstChecked[0].parentid;
             frm.sort = lstChecked[0].sort.ToString();
             frm.path = lstChecked[0].path;
+            frm.image_path = lstChecked[0].image_path;
             frm.flag = 1;
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)

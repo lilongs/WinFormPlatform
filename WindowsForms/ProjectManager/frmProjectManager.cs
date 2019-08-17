@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsForms.Purchase
+namespace WindowsForms.ProjectManager
 {
-    public partial class frmApply : Form
+    public partial class frmProjectManager : Form
     {
-        public frmApply()
+        public frmProjectManager()
         {
             InitializeComponent();
         }
-
     }
 }

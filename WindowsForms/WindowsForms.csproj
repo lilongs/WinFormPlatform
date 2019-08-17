@@ -148,6 +148,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ProjectManager\frmProjectManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectManager\frmProjectManager.Designer.cs">
+      <DependentUpon>frmProjectManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchase\frmApply.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,8 +241,11 @@
       <DependentUpon>frmUserManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\Excel.cs" />
-    <Compile Include="Util\MD5Util.cs" />
+    <Compile Include="Util\MD5.cs" />
     <Compile Include="Util\ReflectionHelper.cs" />
+    <EmbeddedResource Include="ProjectManager\frmProjectManager.resx">
+      <DependentUpon>frmProjectManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchase\frmApply.resx">
       <DependentUpon>frmApply.cs</DependentUpon>
     </EmbeddedResource>

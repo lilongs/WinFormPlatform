@@ -22,6 +22,7 @@ namespace WindowsForms.UserManager
         public int menuid = -1;
         public string menuname = string.Empty;
         public string path = string.Empty;
+        public string image_path = string.Empty;        
         public string sort;
         public int parentid = -1;
         public int flag = 0;
@@ -51,9 +52,10 @@ namespace WindowsForms.UserManager
                 string path = txtpath.Text.Trim();
                 int parentid = String.IsNullOrEmpty(comboxparentno.Text.ToString()) ? 0 : Convert.ToInt32(comboxparentno.SelectedValue);//不填写默认是根节点
                 int sort = String.IsNullOrEmpty(txtsort.Text.Trim()) ? 0 : Convert.ToInt32(txtsort.Text.Trim());
+                string image_path = combImage_path.Text;
                 if (flag == 0)
                 {
-                    if (client.InsertMenuInfo(menuname, path, parentid, sort, username))
+                    if (client.InsertMenuInfo(menuname, path, parentid, sort, username, image_path))
                     {
                         MessageBox.Show("添加成功！");
                         this.DialogResult = DialogResult.OK;
@@ -65,7 +67,7 @@ namespace WindowsForms.UserManager
                 }
                 else
                 {
-                    if (client.UpdateMenuInfo(menuid, menuname, path, parentid, sort, username))
+                    if (client.UpdateMenuInfo(menuid, menuname, path, parentid, sort, username, image_path))
                     {
                         MessageBox.Show("修改成功！");
                         this.DialogResult = DialogResult.OK;
@@ -94,6 +96,7 @@ namespace WindowsForms.UserManager
             {
                 txtmenuname.Text = menuname;
                 txtpath.Text = path;
+                combImage_path.Text = image_path;
                 txtsort.Text = sort;
                 comboxparentno.SelectedValue = parentid;
             }

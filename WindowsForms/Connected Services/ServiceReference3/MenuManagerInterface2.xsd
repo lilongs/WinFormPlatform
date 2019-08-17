@@ -82,6 +82,7 @@
         <xs:element minOccurs="0" name="parentid" type="xs:int" />
         <xs:element minOccurs="0" name="sort" type="xs:int" />
         <xs:element minOccurs="0" name="createby" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -101,6 +102,7 @@
         <xs:element minOccurs="0" name="parentid" type="xs:int" />
         <xs:element minOccurs="0" name="sort" type="xs:int" />
         <xs:element minOccurs="0" name="updateby" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

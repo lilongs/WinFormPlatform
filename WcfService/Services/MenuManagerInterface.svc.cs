@@ -29,14 +29,14 @@ namespace WcfService.Services
             return menuInfo.GetAllMenuInfo(menuname);
         }
 
-        public bool InsertMenuInfo(string menuname, string path, int parentid, int sort, string createby)
+        public bool InsertMenuInfo(string menuname, string path, int parentid, int sort, string createby, string ImagePath)
         {
-            return menuInfo.InsertMenuInfo(menuname, path, parentid, sort, createby);
+            return menuInfo.InsertMenuInfo(menuname, path, parentid, sort, createby,ImagePath);
         }
 
-        public bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby)
+        public bool UpdateMenuInfo(int menuid, string menuname, string path, int parentid, int sort, string updateby, string ImagePath)
         {
-            return menuInfo.UpdateMenuInfo(menuid, menuname, path, parentid, sort, updateby);
+            return menuInfo.UpdateMenuInfo(menuid, menuname, path, parentid, sort, updateby, ImagePath);
         }
     }
 }

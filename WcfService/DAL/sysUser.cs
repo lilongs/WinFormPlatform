@@ -106,7 +106,7 @@ namespace WcfService.DAL
                         from sysuser a
                         left join department b on a.deptno = b.deptno ");
             if (!String.IsNullOrEmpty(username))
-                sql.Append(" where a.username like '%" + username + "%'");
+                sql.Append(" where a.username like '%" + username + "%' ");
 
             sql.Append(@"select username,rolename 
                         from user_role d

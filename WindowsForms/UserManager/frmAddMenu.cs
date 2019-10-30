@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +24,7 @@ namespace WindowsForms.UserManager
         public int menuid = -1;
         public string menuname = string.Empty;
         public string path = string.Empty;
-        public string image_path = string.Empty;        
+        public string image_path = string.Empty;
         public string sort;
         public int parentid = -1;
         public int flag = 0;
@@ -52,7 +54,7 @@ namespace WindowsForms.UserManager
                 string path = txtpath.Text.Trim();
                 int parentid = String.IsNullOrEmpty(comboxparentno.Text.ToString()) ? 0 : Convert.ToInt32(comboxparentno.SelectedValue);//不填写默认是根节点
                 int sort = String.IsNullOrEmpty(txtsort.Text.Trim()) ? 0 : Convert.ToInt32(txtsort.Text.Trim());
-                string image_path = combImage_path.Text;
+                string image_path = popupGalleryEdit1.Text;
                 if (flag == 0)
                 {
                     if (client.InsertMenuInfo(menuname, path, parentid, sort, username, image_path))
@@ -84,6 +86,70 @@ namespace WindowsForms.UserManager
             }
         }
 
+        private void InitPopupGalleryEdit()
+        {
+            try
+            {
+                PopupGalleryEditGallery inplaceGallery = new PopupGalleryEditGallery() { ImageSize = new System.Drawing.Size(32, 32) };
+                GalleryItemGroup group = new GalleryItemGroup() { Caption = "32*32菜单图标" };
+                group.CaptionControl = popupGalleryEdit1;
+
+                using (System.Resources.ResourceReader reader = GetResourceReader(DevExpress.Utils.DxImageAssemblyUtil.ImageAssembly))
+                {
+                    System.Collections.IDictionaryEnumerator dict = reader.GetEnumerator();
+                    while (dict.MoveNext())
+                    {
+                        string key = (string)dict.Key as string;
+                        if (!DevExpress.Utils.DxImageAssemblyUtil.ImageProvider.IsBrowsable(key)) continue;
+                        if (IsImageBasedResource(key) && key.Contains("16x16") == false)
+                        {
+                            Image image = GetImageFromStream((System.IO.Stream)dict.Value);
+                            GalleryItem GItem = new GalleryItem(image, key, key);
+                            GItem.Value = key;
+                            group.Items.Add(GItem);
+                        }
+                    }
+                }
+                inplaceGallery.Groups.Add(group);
+                popupGalleryEdit1.Properties.Gallery.Assign(inplaceGallery);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private static bool IsImageBasedResource(string key)
+        {
+            return key.EndsWith(".png",StringComparison.Ordinal);
+        }
+
+        private static System.Resources.ResourceReader GetResourceReader(System.Reflection.Assembly assembly)
+        {
+            var resources = assembly.GetManifestResourceNames();
+            var imageResources = Array.FindAll(resources, x => x.EndsWith(".resources"));
+            if (imageResources.Length != 1)
+            {
+                throw new Exception("读取异常");
+            }
+            return new System.Resources.ResourceReader(assembly.GetManifestResourceStream(imageResources[0]));
+        }
+
+        private static Image GetImageFromStream(System.IO.Stream stream)
+        {
+            Image res = null;
+            try
+            {
+                res = Image.FromStream(stream);
+            }
+            catch
+            {
+                res = null;
+            }
+            return res;
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -91,27 +157,35 @@ namespace WindowsForms.UserManager
 
         private void frmAddMenu_Load(object sender, EventArgs e)
         {
-            LoadGroupInfo();
-            if (flag == 1)
+            try
             {
-                txtmenuname.Text = menuname;
-                txtpath.Text = path;
-                combImage_path.Text = image_path;
-                txtsort.Text = sort;
-                comboxparentno.SelectedValue = parentid;
+                InitPopupGalleryEdit();
+                LoadGroupInfo();
+                if (flag == 1)
+                {
+                    txtmenuname.Text = menuname;
+                    txtpath.Text = path;
+                    popupGalleryEdit1.Text = image_path;
+                    txtsort.Text = sort;
+                    comboxparentno.SelectedValue = parentid;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void LoadGroupInfo()
         {
             DataTable dt = new DataTable();
-            dt= client.GetAllGroupInfo();
+            dt = client.GetAllGroupInfo();
             DataRow dr = dt.NewRow();
             dr["menuid"] = 0;
             dr["menuname"] = "根节点";
             dt.Rows.Add(dr);
             DataView dv = new DataView(dt);
-            dv.Sort="menuid asc";
+            dv.Sort = "menuid asc";
             dt = dv.ToTable();
 
             comboxparentno.DataSource = dt;

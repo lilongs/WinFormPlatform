@@ -89,7 +89,12 @@ namespace WindowsForms
                     menuItem.Name = menu.Key;
                     menuItem.Caption = menu.Key;
                     menuItem.Tag = menu.Value.path;
-                    menuItem.ImageOptions.Image = (Image)Resources.ResourceManager.GetObject(menu.Value.image_path);
+                    if(!String.IsNullOrEmpty(menu.Value.image_path))
+                    {
+                        menuItem.LargeGlyph = DevExpress.Images.ImageResourceCache.Default.GetImage(menu.Value.image_path);
+                        menuItem.ImageOptions.Image = DevExpress.Images.ImageResourceCache.Default.GetImage(menu.Value.image_path.Replace("32", "16"));
+                    }
+                    //menuItem.ImageOptions.Image = (Image)Resources.ResourceManager.GetObject(menu.Value.image_path);
                     GroupItem.AddItem(menuItem);
                     menuItem.ItemClick += MenuItem_ItemClick;
 
@@ -97,7 +102,11 @@ namespace WindowsForms
                     navBarItem.Name = menu.Key;
                     navBarItem.Caption = menu.Key;
                     navBarItem.Tag = menu.Value.path;
-                    navBarItem.SmallImage=(Image)Resources.ResourceManager.GetObject(menu.Value.image_path);
+                    if (!String.IsNullOrEmpty(menu.Value.image_path))
+                    {
+                        navBarItem.SmallImage = DevExpress.Images.ImageResourceCache.Default.GetImage(menu.Value.image_path.Replace("32","16"));
+                    }
+                    //navBarItem.SmallImage=(Image)Resources.ResourceManager.GetObject(menu.Value.image_path);
                     navBarGroup.ItemLinks.Add(navBarItem);
                     navBarItem.LinkClicked += BarItem_ItemClick;
                 }                

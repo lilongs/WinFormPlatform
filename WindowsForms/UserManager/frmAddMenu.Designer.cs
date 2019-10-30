@@ -40,11 +40,12 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtsort = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.combImage_path = new System.Windows.Forms.ComboBox();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.popupGalleryEdit1 = new DevExpress.XtraEditors.PopupGalleryEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtmenuname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsort.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupGalleryEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -138,20 +139,6 @@
             this.labelControl2.TabIndex = 18;
             this.labelControl2.Text = "添加根节点菜单，根菜单留空即可！";
             // 
-            // combImage_path
-            // 
-            this.combImage_path.FormattingEnabled = true;
-            this.combImage_path.Items.AddRange(new object[] {
-            "user",
-            "premissions",
-            "menu",
-            "dept",
-            "role"});
-            this.combImage_path.Location = new System.Drawing.Point(121, 192);
-            this.combImage_path.Name = "combImage_path";
-            this.combImage_path.Size = new System.Drawing.Size(249, 20);
-            this.combImage_path.TabIndex = 20;
-            // 
             // labelControl6
             // 
             this.labelControl6.Location = new System.Drawing.Point(55, 193);
@@ -160,12 +147,22 @@
             this.labelControl6.TabIndex = 19;
             this.labelControl6.Text = "菜单图片：";
             // 
+            // popupGalleryEdit1
+            // 
+            this.popupGalleryEdit1.EditValue = "";
+            this.popupGalleryEdit1.Location = new System.Drawing.Point(121, 190);
+            this.popupGalleryEdit1.Name = "popupGalleryEdit1";
+            this.popupGalleryEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.popupGalleryEdit1.Size = new System.Drawing.Size(249, 20);
+            this.popupGalleryEdit1.TabIndex = 21;
+            // 
             // frmAddMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(442, 285);
-            this.Controls.Add(this.combImage_path);
+            this.Controls.Add(this.popupGalleryEdit1);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl5);
@@ -185,6 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtmenuname.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtsort.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupGalleryEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,7 +200,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit txtsort;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.ComboBox combImage_path;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.PopupGalleryEdit popupGalleryEdit1;
     }
 }

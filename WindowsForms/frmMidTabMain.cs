@@ -18,14 +18,16 @@ using WindowsForms.ServiceReference1;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraBars.Docking;
 using WindowsForms.Properties;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraTabbedMdi;
 
 namespace WindowsForms
 {
-   
 
-    public partial class frmMain : Form
+
+    public partial class frmMidTabMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public frmMain()
+        public frmMidTabMain()
         {
             InitializeComponent();
         }
@@ -66,21 +68,25 @@ namespace WindowsForms
             DataTable dt = new DataTable();
             dt = dv.ToTable(true, "rolename");
             string[] arr = dt.AsEnumerable().Select(d => d.Field<string>("rolename")).ToArray();
-            barStaticItem2.Caption = userMenu.Rows[0]["username"].ToString();
-            barStaticItem4.Caption = String.Join(",",arr);
+            barStaticItem1.Caption = userMenu.Rows[0]["username"].ToString();
+            barStaticItem2.Caption = String.Join(",",arr);
         }
 
         private void InitMenu()
         {
             foreach(var item in Menus)
             {
-                BarSubItem GroupItem = new BarSubItem();
-                GroupItem.Name = Groups[item.Key];
-                GroupItem.Caption = Groups[item.Key];
-                bar1.AddItem(GroupItem);
+                RibbonPage ribbonPage = new RibbonPage();
+                ribbonPage.Name = Groups[item.Key];
+                ribbonPage.Text = Groups[item.Key];
+                ribbonControl1.Pages.Add(ribbonPage);
+
+                RibbonPageGroup ribbonPageGroup = new RibbonPageGroup();
+                ribbonPageGroup.Text = Groups[item.Key];
+                ribbonPage.Groups.Add(ribbonPageGroup);
 
                 foreach (var menu in item.Value)
-                { 
+                {
                     BarButtonItem menuItem = new BarButtonItem();
                     menuItem.Name = menu.Key;
                     menuItem.Caption = menu.Key;
@@ -90,7 +96,7 @@ namespace WindowsForms
                         menuItem.LargeGlyph = DevExpress.Images.ImageResourceCache.Default.GetImage(menu.Value.image_path);
                         menuItem.ImageOptions.Image = DevExpress.Images.ImageResourceCache.Default.GetImage(menu.Value.image_path.Replace("32", "16"));
                     }
-                    GroupItem.AddItem(menuItem);
+                    ribbonPageGroup.ItemLinks.Add(menuItem);
                     menuItem.ItemClick += MenuItem_ItemClick;
                 }                
             }
@@ -146,58 +152,30 @@ namespace WindowsForms
             client.Operatelog(userMenu.Rows[0]["username"].ToString(), ip, computername, formname);
         }
 
-        private void Add_TabPage(Form form, String title,string tag)
+        private void Add_TabPage(Form form, string title,string tag)
         {
-            bool found = false;
-            XtraTabPage selectedPage = null;
-            foreach (XtraTabPage page in tabControl1.TabPages)
+            if (ShowOpendPage(title))
             {
-                if (page.Tag != null && page.Text == title)
-                {
-                    found = true;
-                    selectedPage = page;
-                    break;
-                }
+                return;
             }
-            if (!found)
-            {
-                selectedPage = new XtraTabPage();
-                selectedPage.Text = title;
-                selectedPage.Tag = form;
-                form.TopLevel = false;
-                form.Dock = DockStyle.Fill;
-                form.FormBorderStyle = FormBorderStyle.None;
-                form.Tag = tag;
-                form.Show();
-                selectedPage.Controls.Clear();
-                selectedPage.Controls.Add(form);
-
-                if (!form.IsDisposed)
-                {
-                    tabControl1.SelectedTabPage = selectedPage;
-                    tabControl1.TabPages.Add(selectedPage);  
-                }
-            }
-            else
-            {
-                if (selectedPage.Tag != null && selectedPage.Tag != form)
-                {
-                    form.TopLevel = false;
-                    form.Dock = DockStyle.Fill;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.Show();
-                    selectedPage.Controls.Clear();
-                    selectedPage.Controls.Add(form);
-                }
-            }
-            selectedPage.BringToFront();
-            tabControl1.SelectedTabPage = selectedPage;
+            form.Text = title;
+            form.Tag = tag;
+            form.MdiParent = this;
+            form.Show();
+            xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[form];
         }
 
-        private void tabControl1_CloseButtonClick(object sender, EventArgs e)
+        private bool ShowOpendPage(string frmName)
         {
-            if(tabControl1.SelectedTabPage.Text!="首页")
-            tabControl1.TabPages.Remove(this.tabControl1.SelectedTabPage);
+            foreach(DevExpress.XtraTabbedMdi.XtraMdiTabPage page in xtraTabbedMdiManager1.Pages)
+            {
+                if (page.Text.Trim()== frmName)
+                {
+                    xtraTabbedMdiManager1.SelectedPage = page;
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)

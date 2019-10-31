@@ -149,6 +149,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="frmMidTabMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMidTabMain.Designer.cs">
+      <DependentUpon>frmMidTabMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectManager\frmProjectManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     <Compile Include="Util\Excel.cs" />
     <Compile Include="Util\MD5.cs" />
     <Compile Include="Util\ReflectionHelper.cs" />
+    <EmbeddedResource Include="frmMidTabMain.resx">
+      <DependentUpon>frmMidTabMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectManager\frmProjectManager.resx">
       <DependentUpon>frmProjectManager.cs</DependentUpon>
     </EmbeddedResource>

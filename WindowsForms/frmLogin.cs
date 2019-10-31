@@ -46,7 +46,8 @@ namespace WindowsForms
             {
                 thread1.Start();
                 MessageBox.Show("登陆成功!");
-                frmMain main = new frmMain();
+                //frmMain main = new frmMain();
+                frmMidTabMain main = new frmMidTabMain();
                 this.Invoke(new MethodInvoker(delegate ()
                 {
                     main.Menus = Menus;
@@ -75,9 +76,9 @@ namespace WindowsForms
 
             Groups.Add(-1, "系统设置");
             MenuInfo menuInfo;
-            temp.Add("修改密码", menuInfo = new MenuInfo("", "change"));
-            temp.Add("切换用户", menuInfo = new MenuInfo("", "user"));
-            temp.Add("退出系统", menuInfo = new MenuInfo("", "quit"));
+            temp.Add("修改密码", menuInfo = new MenuInfo("", "office2013/history/undo_32x32.png"));
+            temp.Add("切换用户", menuInfo = new MenuInfo("", "office2013/scheduling/recurrence_32x32.png"));
+            temp.Add("退出系统", menuInfo = new MenuInfo("", "office2013/reports/none_32x32.png"));
             Menus.Add(-1, temp);
             //装载组别信息
             foreach (DataRow dr in dtAllGroup.Rows)

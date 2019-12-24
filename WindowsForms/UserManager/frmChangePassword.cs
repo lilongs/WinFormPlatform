@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference1;
+using WcfService.Services;
 
 namespace WindowsForms.UserManager
 {
@@ -18,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        PermissionInterfaceClient client = new PermissionInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         string username = string.Empty;
 
         private void frmChangePassword_Load(object sender, EventArgs e)
@@ -49,12 +49,14 @@ namespace WindowsForms.UserManager
         private bool CheckOldPassword()
         {
             string password = MD5.MD5Encrypt(this.txtOldPassword.Text.Trim());
+            IService client = bc.GetWcfService();
             return client.Login(username,password);
         }
 
         private bool UpdatePassword()
         {
             string password = MD5.MD5Encrypt(this.txtNewPassword2.Text.Trim());
+            IService client = bc.GetWcfService();
             return client.UpdatePassword(username, password);
         }
     }

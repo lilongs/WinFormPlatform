@@ -8,9 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference1;
-using WindowsForms.ServiceReference2;
-using WindowsForms.ServiceReference5;
+using WcfService.Services;
 
 namespace WindowsForms.UserManager
 {
@@ -20,9 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        PermissionInterfaceClient client = new PermissionInterfaceClient();
-        RoleManagerInterfaceClient client2 = new RoleManagerInterfaceClient();
-        DeptInfoManagerInterfaceClient client3 = new DeptInfoManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         public string username = string.Empty;//创建人
         public string username2 = string.Empty;//用户名
         public string realname = string.Empty;
@@ -54,7 +50,8 @@ namespace WindowsForms.UserManager
 
         private void SetDeptInfo()
         {
-            DataTable dt = client3.GetAllDeptInfo(string.Empty);
+            IService client = bc.GetWcfService();
+            DataTable dt = client.GetAllDeptInfo(string.Empty);
             comboxdept.DataSource = dt;
             comboxdept.DisplayMember = "deptname";
             comboxdept.ValueMember = "deptno";
@@ -62,7 +59,8 @@ namespace WindowsForms.UserManager
 
         private void SetRoleInfo()
         {
-            DataTable dt = client2.GetAllRoleInfo(string.Empty);
+            IService client = bc.GetWcfService();
+            DataTable dt = client.GetAllRoleInfo(string.Empty);
             checkedComboBoxEdit1.Properties.DataSource = dt;
             checkedComboBoxEdit1.Properties.DisplayMember = "rolename";
             checkedComboBoxEdit1.Properties.ValueMember = "roleid";
@@ -82,6 +80,7 @@ namespace WindowsForms.UserManager
                         roleid_list.Add(Convert.ToInt32(checkedComboBoxEdit1.Properties.Items[i].Value));
                     }
                 }
+                IService client = bc.GetWcfService();
                 if (flag == 0)
                 {
                     if (client.CheckUsername(txtusername.Text.Trim()))

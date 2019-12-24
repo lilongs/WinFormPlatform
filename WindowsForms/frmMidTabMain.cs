@@ -14,12 +14,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.UserManager;
-using WindowsForms.ServiceReference1;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraBars.Docking;
 using WindowsForms.Properties;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraTabbedMdi;
+using WcfService.Services;
 
 namespace WindowsForms
 {
@@ -31,7 +31,7 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
-        PermissionInterfaceClient client = new PermissionInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         public DataTable allGroup = new DataTable();
         public DataTable userMenu = new DataTable();//用户菜单信息
 
@@ -149,6 +149,7 @@ namespace WindowsForms
 
         private void InsertOperateLog(string formname)
         {
+            IService client = bc.GetWcfService();
             client.Operatelog(userMenu.Rows[0]["username"].ToString(), ip, computername, formname);
         }
 

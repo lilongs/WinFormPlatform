@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference1;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        PermissionInterfaceClient client = new PermissionInterfaceClient();
+        BaseCommon bc = new BaseCommon();
 
         private void frmUserManager_Load(object sender, EventArgs e)
         {
@@ -26,6 +27,7 @@ namespace WindowsForms.UserManager
 
         private void LoadUserInfo(string username)
         {
+            IService client = bc.GetWcfService();
             DataTable dtData = client.GetUserInfo(username);
             this.gdcInfo.DataSource = dtData;
         }
@@ -58,6 +60,7 @@ namespace WindowsForms.UserManager
                 {
                     listusername.Add(gdvInfo.GetDataRow(num)["username"].ToString());
                 }
+                IService client = bc.GetWcfService();
                 MessageBox.Show(client.StopUser(listusername)?"禁用成功":"禁用失败");
             }
         }

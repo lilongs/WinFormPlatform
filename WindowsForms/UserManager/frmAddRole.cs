@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference2;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        RoleManagerInterfaceClient client = new RoleManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         public string username = string.Empty;
         public int roleid = -1;
         public string rolename = string.Empty;
@@ -44,6 +45,7 @@ namespace WindowsForms.UserManager
                     MessageBox.Show("请输入部门名称！");
                     return;
                 }
+                IService client = bc.GetWcfService();
                 if (flag == 0)
                 {
                     if (client.InsertRoleInfo(rolename, remark, username))

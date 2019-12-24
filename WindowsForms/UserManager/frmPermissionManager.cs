@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference2;
-using WindowsForms.ServiceReference3;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -19,8 +19,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        RoleManagerInterfaceClient client = new RoleManagerInterfaceClient();
-        MenuManagerInterfaceClient client2 = new MenuManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         private List<int> lstCheckedID = new List<int>();//选择局ID集合
 
         private void frmPermissionManager_Load(object sender, EventArgs e)
@@ -31,6 +30,7 @@ namespace WindowsForms.UserManager
 
         private void LoadRoleInfo()
         {
+            IService client = bc.GetWcfService();
             DataTable dt = client.GetAllRoleInfo(string.Empty);
             listBoxControl1.DataSource = dt;
             listBoxControl1.DisplayMember = "rolename";
@@ -39,7 +39,8 @@ namespace WindowsForms.UserManager
 
         private void LoadMenuInfo()
         {
-            DataTable dt = client2.GetAllMenuInfo();
+            IService client = bc.GetWcfService();
+            DataTable dt = client.GetAllMenuInfo();
             this.treeList1.DataSource = dt;
             treeList1.KeyFieldName = "menuid";
             treeList1.ParentFieldName = "parentid";
@@ -72,6 +73,7 @@ namespace WindowsForms.UserManager
 
         private void role_menus(int roleid)
         {
+            IService client = bc.GetWcfService();
             DataTable dtRoleMenu = client.GetRoleMenu(roleid);
             Dictionary<int, string> DicRoleMenu = new Dictionary<int, string>();
             //将角色权限装在到DicRoleMenu中
@@ -181,6 +183,7 @@ namespace WindowsForms.UserManager
                         GetCheckedID(root);
                     }
                 }
+                IService client = bc.GetWcfService();
                 MessageBox.Show(client.UpdateRoleMenu(roleid, lstCheckedID) > 0 ? "更新成功" : "更新失败");
             }
             catch (Exception ex)

@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference5;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        DeptInfoManagerInterfaceClient client = new DeptInfoManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -26,6 +27,7 @@ namespace WindowsForms.UserManager
 
         private void LoadDeptInfo(string deptname)
         {
+            IService client = bc.GetWcfService();
             DataTable dtData = client.GetAllDeptInfo(deptname);
             this.gdcInfo.DataSource = dtData;
         }

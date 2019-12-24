@@ -12,9 +12,17 @@ namespace WcfService.DBUtility
     {
         public TempTest()
         {
-            connectionString = DbsBaseClass.ConStr;
+            connectionString =  ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
     }    
+
+    public class temp2:DbsBaseClass
+    {
+        public temp2()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
+        }
+    }
 
     public class DbSQL
     {

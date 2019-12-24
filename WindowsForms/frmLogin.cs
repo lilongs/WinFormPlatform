@@ -10,9 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference1;
-using WindowsForms.ServiceReference3;
 using WindowsForms.UserManager;
+using WcfService.Services;
 
 namespace WindowsForms
 {
@@ -22,8 +21,7 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
-        PermissionInterfaceClient client = new PermissionInterfaceClient();
-        MenuManagerInterfaceClient client2 = new MenuManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         DataTable dtUserMenu = new DataTable();
         DataTable dtAllGroup = new DataTable();
         public Dictionary<int, Dictionary<string, MenuInfo>> Menus = new Dictionary<int, Dictionary<string, MenuInfo>>();//组名，菜单名，窗体路径信息和菜单图片路径
@@ -39,7 +37,7 @@ namespace WindowsForms
             //开启一个进程用于获取用于权限菜单信息和新增登陆记录
             Thread thread1 = new Thread(new ThreadStart(LoadMenuInfo));
             thread1.IsBackground = true;
-           
+            IService client = bc.GetWcfService();
             bool result = client.Login(username, password);
 
             if (result)
@@ -64,8 +62,9 @@ namespace WindowsForms
 
         private void LoadMenuInfo()
         {
+            IService client = bc.GetWcfService();
             dtUserMenu = client.GetUserMenuInfo(txtUsername.Text.Trim());
-            dtAllGroup = client2.GetAllGroupInfo();
+            dtAllGroup = client.GetAllGroupInfo();
 
            InitMenuGroups();
         }

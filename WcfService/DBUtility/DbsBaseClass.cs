@@ -11,8 +11,6 @@ namespace WcfService.DBUtility
 {
     public abstract class DbsBaseClass : IDbs
     {
-        public static string ConStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
         protected string connectionString;
         public virtual string ConnectionString
         {

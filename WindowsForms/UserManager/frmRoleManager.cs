@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference2;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        RoleManagerInterfaceClient client = new RoleManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         private void frmRoleManager_Load(object sender, EventArgs e)
         {
             LoadRoleInfo(string.Empty);
@@ -30,6 +31,7 @@ namespace WindowsForms.UserManager
 
         private void LoadRoleInfo(string rolename)
         {
+            IService client = bc.GetWcfService();
             DataTable dtData = client.GetAllRoleInfo(rolename);
             this.gdcInfo.DataSource = dtData;
         }

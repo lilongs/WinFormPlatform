@@ -9,7 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference3;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -19,7 +20,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        MenuManagerInterfaceClient client = new MenuManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         public string username = string.Empty;
         public int menuid = -1;
         public string menuname = string.Empty;
@@ -55,6 +56,7 @@ namespace WindowsForms.UserManager
                 int parentid = String.IsNullOrEmpty(comboxparentno.Text.ToString()) ? 0 : Convert.ToInt32(comboxparentno.SelectedValue);//不填写默认是根节点
                 int sort = String.IsNullOrEmpty(txtsort.Text.Trim()) ? 0 : Convert.ToInt32(txtsort.Text.Trim());
                 string image_path = popupGalleryEdit1.Text;
+                IService client = bc.GetWcfService();
                 if (flag == 0)
                 {
                     if (client.InsertMenuInfo(menuname, path, parentid, sort, username, image_path))
@@ -179,6 +181,7 @@ namespace WindowsForms.UserManager
         private void LoadGroupInfo()
         {
             DataTable dt = new DataTable();
+            IService client = bc.GetWcfService();
             dt = client.GetAllGroupInfo();
             DataRow dr = dt.NewRow();
             dr["menuid"] = 0;

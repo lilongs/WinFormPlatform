@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference5;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -17,7 +18,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        DeptInfoManagerInterfaceClient client = new DeptInfoManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         public string username = string.Empty;
         public int deptno = -1;
         public string deptname = string.Empty;
@@ -28,6 +29,7 @@ namespace WindowsForms.UserManager
         {
             try
             {
+                IService client = bc.GetWcfService();
                 string deptname = this.txtdeptname.Text.Trim();
                 string remark = this.txtremark.Text.Trim();
                 if (String.IsNullOrEmpty(deptname))

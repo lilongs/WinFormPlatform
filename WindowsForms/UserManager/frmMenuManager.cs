@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.ServiceReference3;
+using WcfService.Services;
+using WindowsForms.Util;
 
 namespace WindowsForms.UserManager
 {
@@ -18,7 +19,7 @@ namespace WindowsForms.UserManager
         {
             InitializeComponent();
         }
-        MenuManagerInterfaceClient client = new MenuManagerInterfaceClient();
+        BaseCommon bc = new BaseCommon();
         public List<MenuInfo> lstChecked ;
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -28,6 +29,7 @@ namespace WindowsForms.UserManager
 
         private void LoadMenuInfo(string menuname)
         {
+            IService client = bc.GetWcfService();
             DataTable dt = client.GetAllMenuInfoByName(menuname);
             this.gdcInfo.DataSource = dt;
             gdcInfo.KeyFieldName = "menuid";

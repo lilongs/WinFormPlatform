@@ -42,6 +42,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -65,7 +67,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\ClientVersion.cs" />
     <Compile Include="DAL\DeptInfo.cs" />
     <Compile Include="DAL\Email.cs" />
     <Compile Include="DAL\MenuInfo.cs" />
@@ -75,14 +76,12 @@
     <Compile Include="DBUtility\Dbs.classes.cs" />
     <Compile Include="DBUtility\DbsBaseClass.cs" />
     <Compile Include="DBUtility\IDbs.cs" />
-    <Compile Include="Impl\ClientVersionImpl.cs" />
     <Compile Include="Impl\DeptInfoManagerImpl.cs" />
     <Compile Include="Impl\EmailImpl.cs" />
     <Compile Include="Impl\MenuManagerImpl.cs" />
     <Compile Include="Impl\PermissionImpl.cs" />
     <Compile Include="Impl\RoleManagerImpl.cs" />
     <Compile Include="Impl\ServiceImpl.cs" />
-    <Compile Include="Services\IClientVersion.cs" />
     <Compile Include="Services\IDeptInfoManager.cs" />
     <Compile Include="Services\IEmail.cs" />
     <Compile Include="Services\IMenuManager.cs" />

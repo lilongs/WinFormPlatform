@@ -20,59 +20,7 @@ namespace WcfService.DBUtility
             }
         }
 
-        private string datasource = "";
-        public virtual string DataSource
-        {
-            get
-            {
-                return datasource;
-            }
-        }
-
-        private string database = "";
-        public virtual string Database
-        {
-            get
-            {
-                return database;
-            }
-        }
-
-        private string uid = "";
-        public virtual string Uid
-        {
-            get
-            {
-                return uid;
-            }
-        }
-
-        private string pwd = "";
-        public virtual string PassWord
-        {
-            get
-            {
-                return pwd;
-            }
-        }
-
         #region IDbs 成员
-
-        public virtual string GetconnectionString()
-        {
-            using (FileStream fs = new FileStream("Config.pp", FileMode.Open, FileAccess.Read))
-            {
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    datasource = sr.ReadLine();
-                    database = sr.ReadLine();
-                    uid = sr.ReadLine();
-                    pwd = sr.ReadLine();
-                    return "data source='" + datasource + "';database='" + database + "';uid='" + uid + "';pwd='" + pwd + "';";
-                }
-            }
-        }
-
         /// <summary>
         /// 判断是否存在某表的某个字段
         /// </summary>

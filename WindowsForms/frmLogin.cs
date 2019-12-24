@@ -44,7 +44,6 @@ namespace WindowsForms
             {
                 thread1.Start();
                 MessageBox.Show("登陆成功!");
-                //frmMain main = new frmMain();
                 frmMidTabMain main = new frmMidTabMain();
                 this.Invoke(new MethodInvoker(delegate ()
                 {

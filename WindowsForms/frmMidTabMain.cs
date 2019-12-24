@@ -1,36 +1,24 @@
 ﻿using WindowsForms.Util;
 using DevExpress.XtraBars;
-using DevExpress.XtraTab;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsForms.UserManager;
 using DevExpress.XtraNavBar;
-using DevExpress.XtraBars.Docking;
-using WindowsForms.Properties;
 using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraTabbedMdi;
 using WcfService.Services;
+using System.Diagnostics;
 
 namespace WindowsForms
 {
-
-
     public partial class frmMidTabMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public frmMidTabMain()
-        {
-            InitializeComponent();
-        }
+
         BaseCommon bc = new BaseCommon();
         public DataTable allGroup = new DataTable();
         public DataTable userMenu = new DataTable();//用户菜单信息
@@ -41,6 +29,10 @@ namespace WindowsForms
         public string ip = string.Empty;
         public string computername = string.Empty;
 
+        public frmMidTabMain()
+        {
+            InitializeComponent();
+        }
         
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -127,9 +119,8 @@ namespace WindowsForms
                             form = new frmChangePassword();
                             break;
                         case "切换用户":
-                            frmLogin frm = new frmLogin();
-                            this.Hide();
-                            frm.Show();
+                            Application.Exit();
+                            StartProcess(Application.StartupPath+ "\\WindowsForms.exe", "");
                             return;
                         case "退出系统":
                             Application.Exit();
@@ -144,6 +135,29 @@ namespace WindowsForms
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public bool StartProcess(string runFilePath, params string[] args)
+        {
+            try
+            {
+                string s = "";
+                foreach (string arg in args)
+                {
+                    s = s + arg + " ";
+                }
+                s = s.Trim();
+                Process process = new Process();//创建进程对象    
+                ProcessStartInfo startInfo = new ProcessStartInfo(runFilePath, s); // 括号里是(程序名,参数)
+                process.StartInfo = startInfo;
+                process.Start();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
         }
 
@@ -179,28 +193,10 @@ namespace WindowsForms
             return false;
         }
 
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("确定退出系统？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dr == DialogResult.OK)
-            {
-                e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
-
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        private void navBarControl1_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
-        {
-            NavBarControl navBar = sender as NavBarControl;
-            navBar.OptionsNavPane.NavPaneState = NavPaneState.Collapsed;
-        }
     }
 }
